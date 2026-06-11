@@ -1,0 +1,21 @@
+# dependencies
+node_modules/
+
+# next
+.next/
+out/
+
+# env
+.env*
+.env.local
+
+# IDE
+.vscode/
+
+# AI tooling
+.claude/
+CLAUDE.md
+AGENTS.md
+
+# logs
+*.log

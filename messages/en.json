@@ -1,0 +1,134 @@
+{
+  "nav": {
+    "features": "Features",
+    "pricing": "Pricing",
+    "about": "About",
+    "login": "Log in",
+    "getStarted": "Get started free"
+  },
+  "hero": {
+    "badge": "Built for Bharat's shopkeepers",
+    "headline": "Marketing that works in 3 taps.",
+    "subheadline": "Upload your WhatsApp chat once. Nukkad writes your festival posts, plans your calendar, and helps you reach the right customers — in Hindi.",
+    "cta": "Start free today",
+    "ctaSecondary": "See how it works"
+  },
+  "stats": {
+    "smbs": "Indian SMBs",
+    "whatsapp": "WhatsApp users",
+    "noMarketing": "Have no marketing staff",
+    "festivals": "Festivals tracked"
+  },
+  "features": {
+    "title": "Everything your shop needs to grow",
+    "subtitle": "Built for the boutique owner in Indore, not the marketing team in Mumbai.",
+    "festival": {
+      "title": "Festival Calendar",
+      "desc": "Know Navratri is 8 days away. Get 3 ready posts for your city, your business, in your language."
+    },
+    "ai": {
+      "title": "AI Content Generator",
+      "desc": "Hinglish captions, festival themes, brand colors — all generated in under 5 seconds."
+    },
+    "crm": {
+      "title": "WhatsApp CRM",
+      "desc": "Know which customers are Champions, who's At Risk, and who has a birthday coming up."
+    },
+    "advisor": {
+      "title": "Pre-spend Advisor",
+      "desc": "Before you boost a post, we tell you the best time, audience, and budget for your city."
+    }
+  },
+  "pricing": {
+    "title": "Pricing that fits your pocket",
+    "subtitle": "Less than a cup of chai per day.",
+    "free": {
+      "name": "Nukkad Free",
+      "price": "₹0",
+      "period": "forever",
+      "features": ["5 AI posts/month", "Festival planner (30 days)", "Basic WhatsApp contacts list"]
+    },
+    "starter": {
+      "name": "Nukkad Starter",
+      "price": "₹399",
+      "period": "/month",
+      "features": ["30 posts/month", "Full festival calendar", "WhatsApp CRM (500 contacts)", "Pre-spend advisor"]
+    },
+    "growth": {
+      "name": "Nukkad Growth",
+      "price": "₹899",
+      "period": "/month",
+      "features": ["Unlimited posts", "WhatsApp API integration", "CRM (5,000 contacts)", "Ad ROI tracking", "Priority support in Hindi"]
+    }
+  },
+  "sidebar": {
+    "today": "Today",
+    "calendar": "Calendar",
+    "crm": "WhatsApp CRM",
+    "create": "Create Post",
+    "insights": "Insights",
+    "settings": "Settings"
+  },
+  "dashboard": {
+    "greeting": "Good morning",
+    "streakLabel": "week streak",
+    "festivalCountdown": "days to",
+    "suggestedPostsReady": "suggested posts ready",
+    "approvePost": "Approve",
+    "editPost": "Edit",
+    "skipPost": "Skip",
+    "broadcastNudge": "loyal customers haven't heard from you in 3 weeks.",
+    "sendBroadcast": "Send broadcast",
+    "statsPostsWeek": "Posts this week",
+    "statsContacts": "Contacts reached",
+    "statsResponses": "Responses"
+  },
+  "calendar": {
+    "title": "Content Calendar",
+    "month": "Month",
+    "week": "Week",
+    "draft": "Draft",
+    "approved": "Approved",
+    "scheduled": "Scheduled",
+    "sent": "Sent",
+    "missed": "Missed"
+  },
+  "crm": {
+    "title": "WhatsApp CRM",
+    "all": "All",
+    "champions": "Champions",
+    "loyal": "Loyal",
+    "atRisk": "At Risk",
+    "new": "New",
+    "birthdays": "Birthdays",
+    "sendBroadcast": "Send Broadcast",
+    "lastOrder": "Last order",
+    "lastContacted": "Last contacted"
+  },
+  "create": {
+    "title": "Create Post",
+    "selectFestival": "Select festival",
+    "selectSegment": "Target segment",
+    "productHint": "Product / offer (optional)",
+    "generate": "Generate with AI",
+    "generating": "Generating...",
+    "chooseVariant": "Choose a variant",
+    "approve": "Approve & Schedule",
+    "edit": "Edit caption"
+  },
+  "insights": {
+    "title": "This Week's Summary",
+    "postsSent": "Posts sent",
+    "contactsReached": "Contacts reached",
+    "responses": "Responses received",
+    "topPost": "Top performing post"
+  },
+  "settings": {
+    "title": "Settings",
+    "profile": "Business Profile",
+    "language": "Language",
+    "brand": "Brand Colors",
+    "plan": "Your Plan",
+    "save": "Save changes"
+  }
+}
