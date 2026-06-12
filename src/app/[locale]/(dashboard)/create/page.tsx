@@ -1,105 +1,91 @@
 "use client";
 import { useState } from "react";
-import { MOCK_FESTIVALS, BUSINESS_TYPES } from "@/lib/constants";
+import { MOCK_FESTIVALS } from "@/lib/constants";
 
 const SEGMENTS = [
-  { value: "all", label: "All contacts" },
+  { value: "all", label: "Sab customers" },
   { value: "champion", label: "⭐ Champions" },
   { value: "loyal", label: "💚 Loyal" },
-  { value: "at_risk", label: "⚠️ At Risk" },
-  { value: "new", label: "🆕 New" },
-  { value: "birthday", label: "🎂 Birthdays" },
+  { value: "at_risk", label: "⚠️ Wapas Laao" },
+  { value: "new", label: "🆕 Naye" },
+  { value: "birthday", label: "🎂 Birthday" },
 ];
 
 const MOCK_VARIANTS = [
   {
     id: 1,
-    style: "Short & Punchy",
+    style: "Chhota & catchy",
     caption: "Navratri collection aaya hai! 🎉 New kurtis just in. Limited stock — aao jaldi!",
-    captionHi: "नवरात्रि collection आया है! 🎉 New kurtis just in. Limited stock — जल्दी आओ!",
+    captionHi: "नवरात्रि collection आया है! 🎉 जल्दी आओ!",
   },
   {
     id: 2,
-    style: "Warm & Narrative",
+    style: "Thodi kahani",
     caption: "Is Navratri, apni boutique mein aaye nayi kurtis, lehengas aur accessories 🌸 Aap hamare khas customers mein se hain — pehle dekhne ka mauka sirf aapke liye. 9 din baaki hain!",
-    captionHi: "इस नवरात्रि, बुटीक में आई नई kurtis, lehengas और accessories 🌸 आप हमारे खास customers में से हैं — पहले देखने का मौका सिर्फ आपके लिए।",
+    captionHi: "इस नवरात्रि, बुटीक में आई नई kurtis 🌸 आप हमारे खास customers हैं।",
   },
   {
     id: 3,
-    style: "CTA Heavy",
+    style: "Seedha offer",
     caption: "Navratri sale shuru! 🛍️ 20% off on all ethnic wear. Kal tak ka offer. WhatsApp pe 'NAVRATRI' bhejo aur special discount pao!",
-    captionHi: "नवरात्रि sale शुरू! 🛍️ सभी ethnic wear पर 20% off. कल तक का offer। WhatsApp पे 'NAVRATRI' भेजो और special discount पाओ!",
+    captionHi: "नवरात्रि sale शुरू! 🛍️ 20% off। कल तक का offer।",
   },
 ];
 
 export default function CreatePostPage() {
-  const [step, setStep] = useState<"form" | "generating" | "variants" | "done">("form");
-  const [form, setForm] = useState({
-    festival: "navratri-2026",
-    segment: "loyal",
-    product: "",
-    platform: "whatsapp",
-  });
+  const [step, setStep] = useState<"form" | "generating" | "variants" | "schedule" | "done">("form");
+  const [form, setForm] = useState({ festival: "navratri-2026", segment: "loyal", product: "", platform: "whatsapp" });
   const [selectedVariant, setSelectedVariant] = useState<number | null>(null);
+  const [scheduleTime, setScheduleTime] = useState("Aaj shaam 6 baje");
 
   function generate() {
     setStep("generating");
-    setTimeout(() => setStep("variants"), 2500);
-  }
-
-  function approve() {
-    setStep("done");
+    setTimeout(() => setStep("variants"), 2200);
   }
 
   return (
-    <div className="p-6 max-w-3xl mx-auto">
-      <div className="mb-6">
-        <h1 className="text-2xl font-black text-slate-800">Create Post</h1>
-        <p className="text-sm text-slate-500 mt-0.5">AI generates 3 variants — you pick one, edit, and approve.</p>
+    <div className="p-4 max-w-2xl mx-auto">
+      <div className="mb-5">
+        <h1 className="text-xl font-black text-slate-800">Post Banao</h1>
+        <p className="text-sm text-slate-500 mt-0.5">AI drafts, aap decide karo.</p>
       </div>
 
-      {/* Progress */}
-      <div className="flex items-center gap-2 mb-6 text-xs font-semibold">
+      {/* Progress dots */}
+      <div className="flex items-center gap-2 mb-5 justify-center">
         {(["form", "generating", "variants", "done"] as const).map((s, i) => (
-          <div key={s} className="flex items-center gap-2">
-            {i > 0 && <div className={`h-px w-6 ${step === "done" || (step === "variants" && i <= 2) || (step === "generating" && i <= 1) ? "bg-[#FF6B35]" : "bg-slate-200"}`} />}
-            <span className={`px-2.5 py-1 rounded-full capitalize ${step === s ? "bg-[#FF6B35] text-white" : "bg-slate-100 text-slate-400"}`}>
-              {["Setup", "Generating", "Choose", "Done"][i]}
-            </span>
-          </div>
+          <div
+            key={s}
+            className={`rounded-full transition-all ${
+              step === s ? "w-5 h-2 bg-[#FF6B35]" : i < ["form","generating","variants","schedule","done"].indexOf(step) ? "w-2 h-2 bg-[#FF6B35]" : "w-2 h-2 bg-slate-200"
+            }`}
+          />
         ))}
       </div>
 
       {step === "form" && (
-        <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-6 space-y-5">
+        <div className="space-y-4">
           <div>
-            <label className="text-xs font-bold text-slate-600 block mb-1.5">Festival / Occasion</label>
-            <select
-              value={form.festival}
-              onChange={(e) => setForm({ ...form, festival: e.target.value })}
-              className="w-full px-4 py-2.5 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#FF6B35]/40 focus:border-[#FF6B35]"
-            >
-              <option value="">No specific festival</option>
+            <label className="text-xs font-bold text-slate-600 block mb-2">Kaun sa tyohaar?</label>
+            <div className="flex flex-wrap gap-2">
+              <button type="button" onClick={() => setForm({ ...form, festival: "" })}
+                className={`text-xs px-3 py-2 rounded-xl border font-medium transition-all ${!form.festival ? "border-[#FF6B35] bg-[#fff1eb] text-[#FF6B35]" : "border-slate-200 text-slate-600"}`}>
+                Koi khaas mauka nahi
+              </button>
               {MOCK_FESTIVALS.map((f) => (
-                <option key={f.id} value={f.id}>🎉 {f.name} — {f.daysAway} days away</option>
+                <button key={f.id} type="button" onClick={() => setForm({ ...form, festival: f.id })}
+                  className={`text-xs px-3 py-2 rounded-xl border font-medium transition-all ${form.festival === f.id ? "border-[#FF6B35] bg-[#fff1eb] text-[#FF6B35]" : "border-slate-200 text-slate-600"}`}>
+                  {f.nameHi} · {f.daysAway}d
+                </button>
               ))}
-            </select>
+            </div>
           </div>
 
           <div>
-            <label className="text-xs font-bold text-slate-600 block mb-1.5">Target Segment</label>
+            <label className="text-xs font-bold text-slate-600 block mb-2">Kiske liye?</label>
             <div className="grid grid-cols-3 gap-2">
               {SEGMENTS.map((s) => (
-                <button
-                  key={s.value}
-                  type="button"
-                  onClick={() => setForm({ ...form, segment: s.value })}
-                  className={`text-xs px-3 py-2.5 rounded-xl border font-medium transition-all ${
-                    form.segment === s.value
-                      ? "border-[#FF6B35] bg-[#fff1eb] text-[#FF6B35]"
-                      : "border-slate-200 text-slate-600 hover:border-[#FF6B35]"
-                  }`}
-                >
+                <button key={s.value} type="button" onClick={() => setForm({ ...form, segment: s.value })}
+                  className={`text-xs px-2 py-2.5 rounded-xl border font-medium transition-all ${form.segment === s.value ? "border-[#FF6B35] bg-[#fff1eb] text-[#FF6B35]" : "border-slate-200 text-slate-600"}`}>
                   {s.label}
                 </button>
               ))}
@@ -107,50 +93,43 @@ export default function CreatePostPage() {
           </div>
 
           <div>
-            <label className="text-xs font-bold text-slate-600 block mb-1.5">Platform</label>
+            <label className="text-xs font-bold text-slate-600 block mb-2">Platform</label>
             <div className="flex gap-2">
-              {["whatsapp", "instagram", "facebook"].map((p) => (
-                <button
-                  key={p}
-                  type="button"
-                  onClick={() => setForm({ ...form, platform: p })}
-                  className={`flex-1 text-xs py-2.5 rounded-xl border font-medium capitalize transition-all ${
-                    form.platform === p
-                      ? "border-[#FF6B35] bg-[#fff1eb] text-[#FF6B35]"
-                      : "border-slate-200 text-slate-600"
-                  }`}
-                >
-                  {p === "whatsapp" ? "💬" : p === "instagram" ? "📸" : "👥"} {p}
+              {[{ key: "whatsapp", label: "💬 WhatsApp" }, { key: "instagram", label: "📸 Instagram" }, { key: "facebook", label: "👥 Facebook" }].map((p) => (
+                <button key={p.key} type="button" onClick={() => setForm({ ...form, platform: p.key })}
+                  className={`flex-1 text-xs py-2.5 rounded-xl border font-medium transition-all ${form.platform === p.key ? "border-[#FF6B35] bg-[#fff1eb] text-[#FF6B35]" : "border-slate-200 text-slate-600"}`}>
+                  {p.label}
                 </button>
               ))}
             </div>
           </div>
 
           <div>
-            <label className="text-xs font-bold text-slate-600 block mb-1.5">Product / Offer (optional)</label>
-            <input
-              placeholder="e.g. new kurta collection, 20% Navratri sale..."
-              value={form.product}
+            <label className="text-xs font-bold text-slate-600 block mb-2">Kuch aur batana hai? <span className="font-normal text-slate-400">(optional)</span></label>
+            <input placeholder="jaise: nayi kurta collection, 20% Navratri sale..." value={form.product}
               onChange={(e) => setForm({ ...form, product: e.target.value })}
-              className="w-full px-4 py-2.5 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#FF6B35]/40 focus:border-[#FF6B35]"
-            />
+              className="w-full px-4 py-3 border border-slate-200 rounded-xl text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#FF6B35]/40 focus:border-[#FF6B35]" />
           </div>
 
-          <button
-            onClick={generate}
-            className="w-full bg-[#FF6B35] text-white font-bold py-3 rounded-xl hover:bg-[#e85520] transition-all text-sm"
-          >
-            ✨ Generate with AI →
+          <button onClick={generate} className="w-full bg-[#FF6B35] text-white font-black py-4 rounded-2xl hover:bg-[#e85520] transition-all text-sm shadow-sm shadow-orange-200">
+            ✨ Posts Banao →
           </button>
         </div>
       )}
 
       {step === "generating" && (
-        <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-12 text-center">
-          <div className="text-5xl mb-4 animate-bounce">✨</div>
-          <p className="text-lg font-black text-slate-800 mb-2">Generating your posts...</p>
-          <p className="text-sm text-slate-500">AI is writing Navratri captions for your loyal customers in Indore</p>
-          <div className="mt-6 flex justify-center gap-1">
+        <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-10 text-center">
+          <div className="space-y-3 mb-6">
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="bg-[#dcf8c6] rounded-2xl rounded-tl-sm p-4 animate-pulse text-left">
+                <div className="h-3 bg-green-200 rounded w-3/4 mb-2" />
+                <div className="h-3 bg-green-200 rounded w-1/2" />
+              </div>
+            ))}
+          </div>
+          <p className="text-sm font-bold text-slate-700">AI likh raha hai...</p>
+          <p className="text-xs text-slate-400 mt-1">Navratri ke liye captions ban rahe hain</p>
+          <div className="mt-4 flex justify-center gap-1">
             {[0, 1, 2].map((i) => (
               <div key={i} className="w-2 h-2 bg-[#FF6B35] rounded-full animate-bounce" style={{ animationDelay: `${i * 0.15}s` }} />
             ))}
@@ -159,63 +138,67 @@ export default function CreatePostPage() {
       )}
 
       {step === "variants" && (
-        <div className="space-y-4">
-          <p className="text-sm text-slate-500 font-medium">Choose the best variant for your boutique:</p>
+        <div className="space-y-3">
+          <p className="text-sm text-slate-600 font-medium mb-3">Ek choose karo — edit bhi kar sakte ho:</p>
           {MOCK_VARIANTS.map((v) => (
-            <div
-              key={v.id}
-              onClick={() => setSelectedVariant(v.id)}
-              className={`bg-white rounded-2xl border p-5 cursor-pointer transition-all ${
-                selectedVariant === v.id
-                  ? "border-[#FF6B35] shadow-md ring-2 ring-[#FF6B35]/20"
-                  : "border-slate-200 hover:border-[#FF6B35]/40 shadow-sm"
-              }`}
-            >
+            <div key={v.id} onClick={() => setSelectedVariant(v.id)}
+              className={`bg-white rounded-2xl border p-4 cursor-pointer transition-all ${selectedVariant === v.id ? "border-[#FF6B35] shadow-md ring-2 ring-[#FF6B35]/20" : "border-slate-200 hover:border-[#FF6B35]/40 shadow-sm"}`}>
               <div className="flex items-center justify-between mb-3">
-                <span className="text-xs font-bold bg-slate-100 text-slate-600 px-2 py-1 rounded-full">{v.style}</span>
-                {selectedVariant === v.id && (
-                  <span className="text-xs font-bold bg-[#FF6B35] text-white px-3 py-1 rounded-full">Selected ✓</span>
-                )}
+                <span className="text-xs font-bold bg-slate-100 text-slate-600 px-2.5 py-1 rounded-full">{v.style}</span>
+                {selectedVariant === v.id && <span className="text-xs font-bold bg-[#FF6B35] text-white px-3 py-1 rounded-full">Chuna ✓</span>}
               </div>
-              <p className="text-sm text-slate-700 leading-relaxed">{v.caption}</p>
+              {/* WhatsApp bubble */}
+              <div className="bg-[#dcf8c6] rounded-2xl rounded-tl-sm px-4 py-3 inline-block max-w-full">
+                <p className="text-sm text-slate-800 leading-relaxed">{v.caption}</p>
+                <p className="text-[10px] text-slate-400 text-right mt-1">6:00 PM ✓✓</p>
+              </div>
               <p className="text-xs text-slate-400 italic mt-2">{v.captionHi}</p>
             </div>
           ))}
-
           {selectedVariant && (
-            <div className="flex gap-3 pt-2">
-              <button
-                onClick={approve}
-                className="flex-1 bg-[#FF6B35] text-white font-bold py-3 rounded-xl hover:bg-[#e85520] transition-all text-sm"
-              >
-                ✓ Approve & Schedule
+            <div className="flex gap-2 pt-2">
+              <button onClick={() => setStep("schedule")} className="flex-1 bg-[#16a34a] text-white font-black py-4 rounded-2xl hover:bg-[#15803d] transition-all text-sm shadow-sm">
+                ✓ Approve Karein
               </button>
-              <button
-                className="bg-slate-100 text-slate-700 font-semibold py-3 px-5 rounded-xl hover:bg-slate-200 transition-all text-sm"
-              >
-                ✏️ Edit
+              <button className="bg-slate-100 text-slate-700 font-semibold py-4 px-5 rounded-2xl hover:bg-slate-200 transition-all text-sm">
+                ✏️ Badlein
               </button>
             </div>
           )}
         </div>
       )}
 
+      {step === "schedule" && (
+        <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-6">
+          <p className="font-black text-slate-800 mb-1">Kab bhejein? 📅</p>
+          <p className="text-xs text-slate-500 mb-4">Best time aapke customers ke liye pre-select kiya gaya hai</p>
+          <div className="space-y-2 mb-5">
+            {["Aaj shaam 6 baje", "Kal subah 9 baje", "Kal shaam 7 baje"].map((t) => (
+              <button key={t} type="button" onClick={() => setScheduleTime(t)}
+                className={`w-full text-left px-4 py-3 rounded-xl border font-medium text-sm transition-all ${scheduleTime === t ? "border-[#FF6B35] bg-[#fff1eb] text-[#FF6B35]" : "border-slate-200 text-slate-700"}`}>
+                {t} {t === "Aaj shaam 6 baje" && <span className="text-xs text-[#FF6B35] font-bold ml-2">⭐ Best time</span>}
+              </button>
+            ))}
+          </div>
+          <button onClick={() => setStep("done")} className="w-full bg-[#16a34a] text-white font-black py-4 rounded-2xl hover:bg-[#15803d] transition-all text-sm">
+            ✓ Schedule Karein — {scheduleTime}
+          </button>
+        </div>
+      )}
+
       {step === "done" && (
-        <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-12 text-center">
-          <div className="text-5xl mb-4">🎉</div>
-          <p className="text-lg font-black text-slate-800 mb-2">Post approved!</p>
-          <p className="text-sm text-slate-500 mb-6">
-            Scheduled for <strong>Sep 25 at 6:00 PM</strong> — 7 days before Navratri.
-          </p>
+        <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-10 text-center">
+          <div className="text-5xl mb-3 animate-bounce">🎉</div>
+          <p className="text-lg font-black text-slate-800 mb-1">Ho gaya!</p>
+          <p className="text-sm text-slate-500 mb-1">Post schedule ho gaya — <strong>{scheduleTime}</strong></p>
+          <p className="text-xs text-slate-400 mb-6">Automatically bheja jaega 📲</p>
           <div className="flex justify-center gap-3">
-            <button
-              onClick={() => setStep("form")}
-              className="bg-[#FF6B35] text-white font-bold text-sm px-6 py-2.5 rounded-xl hover:bg-[#e85520] transition-all"
-            >
-              Create another →
+            <button onClick={() => { setStep("form"); setSelectedVariant(null); }}
+              className="bg-[#FF6B35] text-white font-black text-sm px-6 py-3 rounded-2xl hover:bg-[#e85520] transition-all">
+              Aur post banao →
             </button>
-            <a href="./calendar" className="bg-slate-100 text-slate-700 font-semibold text-sm px-6 py-2.5 rounded-xl hover:bg-slate-200 transition-all">
-              View calendar
+            <a href="./calendar" className="bg-slate-100 text-slate-700 font-semibold text-sm px-6 py-3 rounded-2xl hover:bg-slate-200 transition-all">
+              Calendar dekho
             </a>
           </div>
         </div>
