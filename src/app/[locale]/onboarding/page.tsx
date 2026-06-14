@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { BUSINESS_TYPES, SUPPORTED_LOCALES } from "@/lib/constants";
+import { setProfile } from "@/lib/auth";
 
 // Step order per spec: Language FIRST, then business type, city, brand color, done
 const STEPS = ["Language", "Business type", "City", "Brand color", "Done"];
@@ -24,8 +25,18 @@ export default function OnboardingPage() {
   const locale = (params?.locale as string) || "en";
 
   function next() {
-    if (step < STEPS.length - 1) setStep(step + 1);
-    else router.push(`/${locale}/dashboard`);
+    if (step < STEPS.length - 1) {
+      setStep(step + 1);
+    } else {
+      setProfile({
+        businessName: data.businessName || "My Shop",
+        businessType: data.businessType,
+        city: data.city,
+        language: data.language,
+        brandColor: data.brandColor,
+      });
+      router.push(`/${locale}/dashboard`);
+    }
   }
 
   return (
@@ -70,7 +81,7 @@ export default function OnboardingPage() {
                     }`}
                   >
                     {l.label}
-                    {data.language === l.code && <span className="float-right">✓</span>}
+                    {data.language === l.code && <span className="float-right font-bold">+</span>}
                   </button>
                 ))}
               </div>
@@ -169,10 +180,12 @@ export default function OnboardingPage() {
             </div>
           )}
 
-          {/* Step 4 — Payoff screen per spec: bilingual, calendar populated */}
+          {/* Step 4 — Payoff screen */}
           {step === 4 && (
             <div className="text-center py-2">
-              <div className="text-5xl mb-3">🎉</div>
+              <div className="w-14 h-14 rounded-full bg-[#fff1eb] flex items-center justify-center mx-auto mb-3">
+                <span className="text-2xl font-black text-[#FF6B35]">N</span>
+              </div>
               <p className="text-lg font-black text-slate-800">
                 आपका calendar तैयार है!
               </p>
@@ -180,13 +193,13 @@ export default function OnboardingPage() {
               <div className="bg-[#fff1eb] rounded-xl p-4 mt-4 text-left">
                 <p className="text-sm font-bold text-slate-800 mb-2">अगले 30 दिनों में 4 त्योहार:</p>
                 <div className="space-y-1.5 text-xs text-slate-600">
-                  <p>🎉 Navratri — 8 din mein</p>
-                  <p>🏹 Dussehra — 18 din mein</p>
-                  <p>🌙 Karva Chauth — 26 din mein</p>
-                  <p>🪔 Diwali — 37 din mein</p>
+                  <p>Navratri — 8 din mein</p>
+                  <p>Dussehra — 18 din mein</p>
+                  <p>Karva Chauth — 26 din mein</p>
+                  <p>Diwali — 37 din mein</p>
                 </div>
               </div>
-              <p className="text-xs text-slate-500 mt-3">3 posts ready hain aapke liye ✓</p>
+              <p className="text-xs text-slate-500 mt-3">3 posts ready hain aapke liye</p>
             </div>
           )}
 

@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
 import Link from "next/link";
 import Logo from "@/components/ui/Logo";
-import { setSession } from "@/lib/auth";
+import { setSession, hasProfile } from "@/lib/auth";
 
 type OtpStatus = "idle" | "loading" | "sent" | "error";
 type VerifyStatus = "idle" | "loading" | "error";
@@ -47,7 +47,11 @@ export default function LoginPage() {
         setVerifyStatus("error");
       } else {
         setSession();
-        router.push(`/${locale}/dashboard`);
+        if (hasProfile()) {
+          router.push(`/${locale}/dashboard`);
+        } else {
+          router.push(`/${locale}/onboarding`);
+        }
       }
     }, 1200);
   }

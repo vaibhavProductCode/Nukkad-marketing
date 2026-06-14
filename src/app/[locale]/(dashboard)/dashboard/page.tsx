@@ -1,15 +1,22 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { MOCK_FESTIVALS, MOCK_POSTS } from "@/lib/constants";
 import Link from "next/link";
+import { getProfile, type UserProfile } from "@/lib/auth";
 
 export default function DashboardPage() {
   const t = useTranslations("home");
   const [postState, setPostState] = useState<"pending" | "approved" | "skipped">("pending");
+  const [profile, setProfileState] = useState<UserProfile | null>(null);
+
+  useEffect(() => {
+    setProfileState(getProfile());
+  }, []);
 
   const nextFestival = MOCK_FESTIVALS[0];
   const suggestedPost = MOCK_POSTS[0];
+  const businessName = profile?.businessName || "My Shop";
 
   return (
     <div className="p-4 max-w-2xl mx-auto">
@@ -17,7 +24,7 @@ export default function DashboardPage() {
       <div className="mb-5 flex items-center justify-between">
         <div>
           <p className="text-sm text-slate-500">{t("greeting")},</p>
-          <h1 className="text-xl font-black text-slate-800">Priya Boutique</h1>
+          <h1 className="text-xl font-black text-slate-800">{businessName}</h1>
         </div>
         <div className="flex items-center gap-1.5 bg-[#fff1eb] px-3 py-2 rounded-xl border border-orange-100">
           <div>
