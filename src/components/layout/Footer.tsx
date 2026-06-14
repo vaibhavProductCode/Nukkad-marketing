@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Footer() {
   return (
     <footer className="bg-[#1e293b] text-slate-400">
@@ -14,20 +16,20 @@ export default function Footer() {
           <ul className="space-y-2 text-sm">
             <li><a href="#features" className="hover:text-[#FF6B35] transition-colors">Features</a></li>
             <li><a href="#pricing" className="hover:text-[#FF6B35] transition-colors">Pricing</a></li>
-            <li><a href="#" className="hover:text-[#FF6B35] transition-colors">Blog</a></li>
+            {/* Blog hidden until content exists */}
           </ul>
         </div>
         <div>
           <p className="text-sm font-semibold text-white mb-3">Company</p>
           <ul className="space-y-2 text-sm">
-            <li><a href="#" className="hover:text-[#FF6B35] transition-colors">About</a></li>
-            <li><a href="#" className="hover:text-[#FF6B35] transition-colors">Privacy Policy</a></li>
-            <li><a href="#" className="hover:text-[#FF6B35] transition-colors">Terms of Use</a></li>
+            {/* About hidden until content exists */}
+            <li><Link href="/en/privacy" className="hover:text-[#FF6B35] transition-colors">Privacy Policy</Link></li>
+            <li><Link href="/en/terms" className="hover:text-[#FF6B35] transition-colors">Terms of Use</Link></li>
           </ul>
         </div>
       </div>
       <div className="border-t border-slate-700 text-center py-4 text-xs text-slate-500">
-        © {new Date().getFullYear()} NUKKAD. Made with ❤️ for Bharat's shopkeepers.
+        © {new Date().getFullYear()} NUKKAD. Made with ❤️ for Bharat&apos;s shopkeepers.
       </div>
     </footer>
   );

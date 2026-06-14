@@ -19,7 +19,7 @@ export default function Navbar() {
         </Link>
 
         <ul className="hidden md:flex items-center gap-8">
-          {(["features", "pricing", "about"] as const).map((key) => (
+          {(["features", "pricing"] as const).map((key) => (
             <li key={key}>
               <Link href={`#${key}`} className="text-sm text-slate-600 hover:text-[#FF6B35] transition-colors">
                 {t(key)}
@@ -29,12 +29,10 @@ export default function Navbar() {
         </ul>
 
         <div className="hidden md:flex items-center gap-3">
-          {/* Language selector */}
+          {/* Language selector — English + Hindi only */}
           <select
             value={locale}
-            onChange={(e) => {
-              window.location.href = `/${e.target.value}`;
-            }}
+            onChange={(e) => { window.location.href = `/${e.target.value}`; }}
             className="text-xs text-slate-500 border border-slate-200 rounded-lg px-2 py-1.5 bg-white focus:outline-none focus:ring-1 focus:ring-orange-300"
           >
             {SUPPORTED_LOCALES.map((l) => (
@@ -45,18 +43,14 @@ export default function Navbar() {
             {t("login")}
           </Link>
           <Link
-            href={`/${locale}/login`}
-            className="text-sm font-semibold bg-[#FF6B35] text-white px-4 py-2 rounded-xl hover:bg-[#e85520] transition-colors shadow-sm"
+            href={`/${locale}/dashboard`}
+            className="text-sm font-bold bg-[#FF6B35] text-white px-4 py-2 rounded-xl hover:bg-[#e85520] transition-colors shadow-sm"
           >
             {t("getStarted")}
           </Link>
         </div>
 
-        <button
-          className="md:hidden p-2 text-slate-600"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Menu"
-        >
+        <button className="md:hidden p-2 text-slate-600" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu">
           <div className="w-5 space-y-1">
             <span className="block h-0.5 bg-current" />
             <span className="block h-0.5 bg-current" />
@@ -67,12 +61,16 @@ export default function Navbar() {
 
       {menuOpen && (
         <div className="md:hidden border-t border-orange-100 bg-white px-4 pb-4 pt-2 space-y-2">
-          {(["features", "pricing", "about"] as const).map((key) => (
+          {(["features", "pricing"] as const).map((key) => (
             <Link key={key} href={`#${key}`} className="block text-sm text-slate-600 py-1" onClick={() => setMenuOpen(false)}>
               {t(key)}
             </Link>
           ))}
-          <Link href={`/${locale}/login`} className="block mt-2 text-center text-sm font-semibold bg-[#FF6B35] text-white px-4 py-2.5 rounded-xl" onClick={() => setMenuOpen(false)}>
+          <Link
+            href={`/${locale}/dashboard`}
+            className="block mt-2 text-center text-sm font-bold bg-[#FF6B35] text-white px-4 py-3 rounded-xl"
+            onClick={() => setMenuOpen(false)}
+          >
             {t("getStarted")}
           </Link>
         </div>

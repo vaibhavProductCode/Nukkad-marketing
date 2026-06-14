@@ -3,9 +3,6 @@ import type { Festival, Contact, Post } from "@/types";
 export const SUPPORTED_LOCALES = [
   { code: "en", label: "English" },
   { code: "hi", label: "हिंदी" },
-  { code: "mr", label: "मराठी" },
-  { code: "bn", label: "বাংলা" },
-  { code: "ta", label: "தமிழ்" },
 ];
 
 export const BUSINESS_TYPES = [
