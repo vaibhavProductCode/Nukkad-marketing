@@ -4,131 +4,178 @@
     "pricing": "Pricing",
     "about": "About",
     "login": "Log in",
-    "getStarted": "Get started free"
+    "getStarted": "Try the app"
   },
   "hero": {
-    "badge": "Built for Bharat's shopkeepers",
-    "headline": "Marketing that works in 3 taps.",
-    "subheadline": "Upload your WhatsApp chat once. Nukkad writes your festival posts, plans your calendar, and helps you reach the right customers — in Hindi.",
-    "cta": "Start free today",
+    "badge": "Built for India's neighbourhood businesses",
+    "headline": "Your shop's marketing — done in 3 taps.",
+    "subheadline": "Upload your WhatsApp chat once. Nukkad writes your festival posts, manages your customers, and tells you who to message today.",
+    "cta": "Open the app",
     "ctaSecondary": "See how it works"
   },
   "stats": {
-    "smbs": "Indian SMBs",
-    "whatsapp": "WhatsApp users",
-    "noMarketing": "Have no marketing staff",
-    "festivals": "Festivals tracked"
+    "smbs": "small businesses in India",
+    "whatsapp": "WhatsApp users in India",
+    "noMarketing": "have no marketing team",
+    "festivals": "festivals tracked for your city"
   },
   "features": {
-    "title": "Everything your shop needs to grow",
-    "subtitle": "Built for the boutique owner in Indore, not the marketing team in Mumbai.",
+    "title": "Everything your shop needs",
+    "subtitle": "No marketing degree needed. No expensive tools. Just your phone.",
     "festival": {
       "title": "Festival Calendar",
-      "desc": "Know Navratri is 8 days away. Get 3 ready posts for your city, your business, in your language."
+      "desc": "Navratri in 8 days? Your posts are already waiting for you — written for your shop, your city."
     },
     "ai": {
-      "title": "AI Content Generator",
-      "desc": "Hinglish captions, festival themes, brand colors — all generated in under 5 seconds."
+      "title": "AI Post Writer",
+      "desc": "Pick a festival and a customer group. Nukkad writes 3 caption options in seconds. You just pick one."
     },
     "crm": {
-      "title": "WhatsApp CRM",
-      "desc": "Know which customers are Champions, who's At Risk, and who has a birthday coming up."
+      "title": "Customer Groups",
+      "desc": "Nukkad sorts your customers automatically — who buys regularly, who hasn't been back, who has a birthday coming."
     },
     "advisor": {
-      "title": "Pre-spend Advisor",
-      "desc": "Before you boost a post, we tell you the best time, audience, and budget for your city."
+      "title": "Budget Advisor",
+      "desc": "Before you spend on a boosted post, Nukkad tells you the right time, audience, and amount for your city."
     }
   },
   "pricing": {
-    "title": "Pricing that fits your pocket",
-    "subtitle": "Less than a cup of chai per day.",
+    "title": "Simple pricing",
+    "subtitle": "Start free. Upgrade when it's working.",
     "free": {
-      "name": "Nukkad Free",
+      "name": "Free",
       "price": "₹0",
-      "period": "forever",
-      "features": ["5 AI posts/month", "Festival planner (30 days)", "Basic WhatsApp contacts list"]
+      "period": "always",
+      "features": ["5 AI posts per month", "30-day festival calendar", "Basic customer list"]
     },
     "starter": {
-      "name": "Nukkad Starter",
+      "name": "Starter",
       "price": "₹399",
       "period": "/month",
-      "features": ["30 posts/month", "Full festival calendar", "WhatsApp CRM (500 contacts)", "Pre-spend advisor"]
+      "features": ["30 posts per month", "Full festival calendar", "Customer groups (500)", "WhatsApp broadcasts"]
     },
     "growth": {
-      "name": "Nukkad Growth",
+      "name": "Growth",
       "price": "₹899",
       "period": "/month",
-      "features": ["Unlimited posts", "WhatsApp API integration", "CRM (5,000 contacts)", "Ad ROI tracking", "Priority support in Hindi"]
+      "features": ["Unlimited posts", "WhatsApp API", "5,000 customers", "Ad budget advisor", "Priority support"]
     }
   },
   "sidebar": {
     "today": "Today",
     "calendar": "Calendar",
-    "crm": "WhatsApp CRM",
+    "crm": "Customers",
     "create": "Create Post",
-    "insights": "Insights",
+    "insights": "This Week",
     "settings": "Settings"
   },
-  "dashboard": {
-    "greeting": "Good morning",
+  "home": {
+    "greeting": "Hello",
     "streakLabel": "week streak",
-    "festivalCountdown": "days to",
-    "suggestedPostsReady": "suggested posts ready",
-    "approvePost": "Approve",
-    "editPost": "Edit",
-    "skipPost": "Skip",
+    "streakMotivation": "Keep it going",
+    "festivalAlert": "Festival coming up",
+    "festivalDaysAway": "days away",
+    "festivalPostsReady": "posts ready for your shop",
+    "viewCalendar": "View calendar",
+    "suggestedPost": "Today's suggested post",
+    "approve": "Approve",
+    "edit": "Edit",
+    "skip": "Skip",
+    "postApproved": "Post approved!",
+    "postScheduled": "Scheduled for this evening at 6 PM",
+    "viewMore": "View more posts",
     "broadcastNudge": "loyal customers haven't heard from you in 3 weeks.",
-    "sendBroadcast": "Send broadcast",
+    "sendMessage": "Send Message",
+    "preview": "Preview",
     "statsPostsWeek": "Posts this week",
-    "statsContacts": "Contacts reached",
-    "statsResponses": "Responses"
-  },
-  "calendar": {
-    "title": "Content Calendar",
-    "month": "Month",
-    "week": "Week",
-    "draft": "Draft",
-    "approved": "Approved",
-    "scheduled": "Scheduled",
-    "sent": "Sent",
-    "missed": "Missed"
+    "statsReached": "Customers reached",
+    "statsReplies": "Replies received"
   },
   "crm": {
-    "title": "WhatsApp CRM",
+    "title": "Customers",
+    "subtitle": "opted in for messages",
+    "import": "Import",
+    "importTitle": "Upload your WhatsApp chat here",
+    "importDesc": "Nukkad will figure out who your best customers are — who buys regularly, who hasn't been back.",
+    "privacyNote": "Your chats are never stored — we only extract signals, messages are never saved.",
+    "importButton": "Upload WhatsApp Export",
+    "later": "Later",
     "all": "All",
     "champions": "Champions",
     "loyal": "Loyal",
-    "atRisk": "At Risk",
+    "atRisk": "Inactive",
     "new": "New",
-    "birthdays": "Birthdays",
-    "sendBroadcast": "Send Broadcast",
+    "birthday": "Birthday",
+    "noContacts": "No customers in this group yet.",
     "lastOrder": "Last order",
-    "lastContacted": "Last contacted"
+    "messageSend": "Send Message",
+    "broadcastButton": "Send to selected"
   },
   "create": {
     "title": "Create Post",
-    "selectFestival": "Select festival",
-    "selectSegment": "Target segment",
-    "productHint": "Product / offer (optional)",
-    "generate": "Generate with AI",
-    "generating": "Generating...",
-    "chooseVariant": "Choose a variant",
-    "approve": "Approve & Schedule",
-    "edit": "Edit caption"
+    "subtitle": "AI writes the draft, you decide.",
+    "whichFestival": "Which occasion?",
+    "noFestival": "No specific occasion",
+    "forWhom": "For which customers?",
+    "allCustomers": "All customers",
+    "platform": "Platform",
+    "optional": "optional",
+    "productHint": "e.g. new saree collection, 20% Navratri sale...",
+    "generate": "Write posts with AI",
+    "aiWriting": "AI is writing your posts...",
+    "aiWritingDesc": "Writing Navratri captions for your loyal customers",
+    "chooseCaption": "Choose one — you can edit it too:",
+    "selected": "Selected",
+    "approve": "Approve",
+    "edit": "Edit",
+    "scheduleTitle": "When should we send it?",
+    "scheduleDesc": "Best time for your customers is pre-selected",
+    "bestTime": "Best time",
+    "scheduleButton": "Schedule for",
+    "doneTitle": "Done!",
+    "doneDesc": "Post scheduled — it will be sent automatically",
+    "createAnother": "Create another post",
+    "viewCalendar": "View calendar",
+    "style1": "Short & punchy",
+    "style2": "Story-style",
+    "style3": "Direct offer"
   },
   "insights": {
-    "title": "This Week's Summary",
-    "postsSent": "Posts sent",
-    "contactsReached": "Contacts reached",
-    "responses": "Responses received",
-    "topPost": "Top performing post"
+    "title": "This Week",
+    "streak": "Posting streak",
+    "streakWeeks": "weeks",
+    "streakDesc": "You posted every week for",
+    "topPost": "Most liked post",
+    "opportunity": "Next opportunity",
+    "planButton": "Plan posts for this festival",
+    "achievementLabel": "This week:"
   },
   "settings": {
     "title": "Settings",
-    "profile": "Business Profile",
-    "language": "Language",
-    "brand": "Brand Colors",
-    "plan": "Your Plan",
-    "save": "Save changes"
+    "profileTitle": "Business Profile",
+    "businessName": "Business name",
+    "businessType": "Business type",
+    "city": "City",
+    "state": "State",
+    "instagram": "Instagram handle",
+    "languageTitle": "Language",
+    "languageNote": "Changes the entire app language",
+    "colorTitle": "Brand Colour",
+    "planTitle": "Your Plan",
+    "currentPlan": "Currently on",
+    "upgradeButton": "Upgrade to Starter",
+    "planDesc": "Free plan: 5 AI posts/month · 30-day calendar · Basic customer list",
+    "privacyTitle": "Privacy & Data",
+    "privacyDesc": "Your data is stored in India (AWS Mumbai). Phone numbers are encrypted. WhatsApp chat content is never saved.",
+    "deleteData": "Delete my account and data",
+    "save": "Save Changes",
+    "saved": "Saved!"
+  },
+  "calendar": {
+    "title": "Festival Calendar",
+    "subtitle": "Indore",
+    "createPost": "New Post",
+    "upcoming": "Upcoming for your shop",
+    "create": "Plan posts"
   }
 }

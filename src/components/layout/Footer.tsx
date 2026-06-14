@@ -1,15 +1,16 @@
 import Link from "next/link";
+import Logo from "@/components/ui/Logo";
 
 export default function Footer() {
   return (
     <footer className="bg-[#1e293b] text-slate-400">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-1 sm:grid-cols-3 gap-8">
         <div>
-          <p className="text-2xl font-black text-[#FF6B35] mb-2">NUKKAD</p>
+          <Logo size="sm" variant="full" className="mb-3 [&_span]:text-white" />
           <p className="text-sm leading-relaxed">
-            Where every neighborhood business gets its marketing edge.
+            Marketing for India&apos;s neighbourhood shops — done in 3 taps.
           </p>
-          <p className="text-xs mt-3 text-slate-500">हर दुकानदार का marketing partner.</p>
+          <p className="text-xs mt-3 text-slate-500">हर दुकानदार का साथी।</p>
         </div>
         <div>
           <p className="text-sm font-semibold text-white mb-3">Product</p>

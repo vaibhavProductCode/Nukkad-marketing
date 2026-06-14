@@ -4,6 +4,7 @@ import { useParams } from "next/navigation";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { SUPPORTED_LOCALES } from "@/lib/constants";
+import Logo from "@/components/ui/Logo";
 
 export default function Navbar() {
   const t = useTranslations("nav");
@@ -15,7 +16,7 @@ export default function Navbar() {
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-orange-100">
       <nav className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <Link href={`/${locale}`} className="flex items-center gap-2">
-          <span className="text-2xl font-black text-[#FF6B35] tracking-tight">NUKKAD</span>
+          <Logo size="sm" />
         </Link>
 
         <ul className="hidden md:flex items-center gap-8">

@@ -1,134 +1,181 @@
 {
   "nav": {
-    "features": "फीचर्स",
-    "pricing": "कीमत",
+    "features": "सुविधाएँ",
+    "pricing": "मूल्य",
     "about": "हमारे बारे में",
-    "login": "लॉग इन",
-    "getStarted": "फ्री शुरू करें"
+    "login": "लॉग इन करें",
+    "getStarted": "ऐप खोलें"
   },
   "hero": {
-    "badge": "भारत के दुकानदारों के लिए बना",
-    "headline": "3 टैप में मार्केटिंग।",
-    "subheadline": "एक बार WhatsApp चैट अपलोड करें। Nukkad आपके festival posts लिखेगा, calendar बनाएगा, और सही customers तक पहुंचाएगा — हिंदी में।",
-    "cta": "आज फ्री शुरू करें",
+    "badge": "भारत की पड़ोसी दुकानों के लिए बना",
+    "headline": "आपकी दुकान की मार्केटिंग — 3 टैप में।",
+    "subheadline": "एक बार अपना WhatsApp चैट अपलोड करें। Nukkad त्योहार के पोस्ट लिखेगा, ग्राहकों को संभालेगा, और बताएगा कि आज किसे संदेश भेजना है।",
+    "cta": "ऐप खोलें",
     "ctaSecondary": "देखें कैसे काम करता है"
   },
   "stats": {
-    "smbs": "भारतीय SMBs",
-    "whatsapp": "WhatsApp यूजर्स",
-    "noMarketing": "के पास मार्केटिंग स्टाफ नहीं",
-    "festivals": "त्योहार ट्रैक किए"
+    "smbs": "छोटे व्यवसाय भारत में",
+    "whatsapp": "WhatsApp उपयोगकर्ता भारत में",
+    "noMarketing": "के पास कोई मार्केटिंग टीम नहीं",
+    "festivals": "आपके शहर के त्योहार ट्रैक किए गए"
   },
   "features": {
-    "title": "आपकी दुकान को grow करने के लिए सब कुछ",
-    "subtitle": "इंदौर की boutique owner के लिए बना है, मुंबई की marketing team के लिए नहीं।",
+    "title": "आपकी दुकान के लिए सब कुछ",
+    "subtitle": "कोई मार्केटिंग डिग्री नहीं चाहिए। कोई महंगे टूल नहीं। बस आपका फोन।",
     "festival": {
-      "title": "त्योहार Calendar",
-      "desc": "जानें नवरात्रि 8 दिन दूर है। अपने शहर, अपने business के लिए 3 ready posts पाएं।"
+      "title": "त्योहार कैलेंडर",
+      "desc": "नवरात्रि 8 दिन में? आपके पोस्ट पहले से तैयार हैं — आपकी दुकान और शहर के लिए।"
     },
     "ai": {
-      "title": "AI Content Generator",
-      "desc": "Hinglish captions, festival themes, brand colors — सब 5 सेकंड में।"
+      "title": "AI पोस्ट लेखक",
+      "desc": "त्योहार और ग्राहक समूह चुनें। Nukkad कुछ सेकंड में 3 विकल्प लिखेगा। बस एक चुनिए।"
     },
     "crm": {
-      "title": "WhatsApp CRM",
-      "desc": "जानें कौन से customers Champions हैं, कौन At Risk है, किसका birthday आने वाला है।"
+      "title": "ग्राहक समूह",
+      "desc": "Nukkad अपने आप ग्राहकों को छाँटता है — कौन नियमित खरीदता है, कौन वापस नहीं आया, किसका जन्मदिन आने वाला है।"
     },
     "advisor": {
-      "title": "Pre-spend Advisor",
-      "desc": "Post boost करने से पहले जानें — सही time, audience, और budget।"
+      "title": "बजट सलाहकार",
+      "desc": "पोस्ट बूस्ट करने से पहले, Nukkad आपको बताता है — सही समय, सही दर्शक, आपके शहर के लिए सही राशि।"
     }
   },
   "pricing": {
-    "title": "आपकी जेब के हिसाब से कीमत",
-    "subtitle": "एक चाय से भी कम रोज़।",
+    "title": "सरल मूल्य निर्धारण",
+    "subtitle": "मुफ्त शुरू करें। जब काम करे तो अपग्रेड करें।",
     "free": {
-      "name": "Nukkad Free",
+      "name": "मुफ्त",
       "price": "₹0",
-      "period": "हमेशा के लिए",
-      "features": ["5 AI posts/महीना", "Festival planner (30 दिन)", "Basic WhatsApp contacts list"]
+      "period": "हमेशा",
+      "features": ["5 AI पोस्ट प्रति माह", "30 दिन का त्योहार कैलेंडर", "बुनियादी ग्राहक सूची"]
     },
     "starter": {
-      "name": "Nukkad Starter",
+      "name": "स्टार्टर",
       "price": "₹399",
-      "period": "/महीना",
-      "features": ["30 posts/महीना", "पूरा festival calendar", "WhatsApp CRM (500 contacts)", "Pre-spend advisor"]
+      "period": "/माह",
+      "features": ["30 पोस्ट प्रति माह", "पूरा त्योहार कैलेंडर", "ग्राहक समूह (500)", "WhatsApp प्रसारण"]
     },
     "growth": {
-      "name": "Nukkad Growth",
+      "name": "ग्रोथ",
       "price": "₹899",
-      "period": "/महीना",
-      "features": ["Unlimited posts", "WhatsApp API integration", "CRM (5,000 contacts)", "Ad ROI tracking", "हिंदी में priority support"]
+      "period": "/माह",
+      "features": ["असीमित पोस्ट", "WhatsApp API", "5,000 ग्राहक", "विज्ञापन बजट सलाहकार", "प्राथमिकता सहायता"]
     }
   },
   "sidebar": {
     "today": "आज",
-    "calendar": "Calendar",
-    "crm": "WhatsApp CRM",
-    "create": "Post बनाएं",
-    "insights": "Insights",
-    "settings": "Settings"
+    "calendar": "कैलेंडर",
+    "crm": "ग्राहक",
+    "create": "पोस्ट बनाएं",
+    "insights": "इस हफ्ते",
+    "settings": "सेटिंग"
   },
-  "dashboard": {
-    "greeting": "शुभ प्रभात",
-    "streakLabel": "हफ्ते की streak",
-    "festivalCountdown": "दिन बाकी",
-    "suggestedPostsReady": "suggested posts तैयार",
-    "approvePost": "Approve",
-    "editPost": "Edit",
-    "skipPost": "Skip",
-    "broadcastNudge": "loyal customers को 3 हफ्ते से message नहीं गया।",
-    "sendBroadcast": "Broadcast भेजें",
-    "statsPostsWeek": "इस हफ्ते posts",
-    "statsContacts": "Contacts reached",
-    "statsResponses": "Responses"
-  },
-  "calendar": {
-    "title": "Content Calendar",
-    "month": "महीना",
-    "week": "हफ्ता",
-    "draft": "Draft",
-    "approved": "Approved",
-    "scheduled": "Scheduled",
-    "sent": "Sent",
-    "missed": "Missed"
+  "home": {
+    "greeting": "नमस्ते",
+    "streakLabel": "हफ्ते की लकीर",
+    "streakMotivation": "जारी रखें",
+    "festivalAlert": "त्योहार आने वाला है",
+    "festivalDaysAway": "दिन बाकी",
+    "festivalPostsReady": "पोस्ट तैयार हैं आपकी दुकान के लिए",
+    "viewCalendar": "कैलेंडर देखें",
+    "suggestedPost": "आज का सुझाया पोस्ट",
+    "approve": "स्वीकृत करें",
+    "edit": "बदलें",
+    "skip": "छोड़ें",
+    "postApproved": "पोस्ट स्वीकृत!",
+    "postScheduled": "आज शाम 6 बजे के लिए निर्धारित",
+    "viewMore": "और पोस्ट देखें",
+    "broadcastNudge": "नियमित ग्राहकों को 3 हफ्ते से संदेश नहीं गया।",
+    "sendMessage": "संदेश भेजें",
+    "preview": "झलक देखें",
+    "statsPostsWeek": "इस हफ्ते पोस्ट",
+    "statsReached": "ग्राहकों तक पहुँचे",
+    "statsReplies": "जवाब आए"
   },
   "crm": {
-    "title": "WhatsApp CRM",
-    "all": "सभी",
-    "champions": "Champions",
-    "loyal": "Loyal",
-    "atRisk": "At Risk",
-    "new": "New",
-    "birthdays": "Birthdays",
-    "sendBroadcast": "Broadcast भेजें",
-    "lastOrder": "Last order",
-    "lastContacted": "Last contacted"
+    "title": "ग्राहक",
+    "subtitle": "संदेश के लिए राज़ी",
+    "import": "आयात करें",
+    "importTitle": "यहाँ अपना WhatsApp चैट अपलोड करें",
+    "importDesc": "Nukkad पता लगाएगा कि आपके सबसे अच्छे ग्राहक कौन हैं — कौन नियमित खरीदता है, कौन वापस नहीं आया।",
+    "privacyNote": "आपके चैट कभी सेव नहीं होते — हम सिर्फ संकेत निकालते हैं, संदेश कभी सेव नहीं होते।",
+    "importButton": "WhatsApp निर्यात अपलोड करें",
+    "later": "बाद में",
+    "all": "सब",
+    "champions": "सर्वश्रेष्ठ",
+    "loyal": "वफादार",
+    "atRisk": "निष्क्रिय",
+    "new": "नए",
+    "birthday": "जन्मदिन",
+    "noContacts": "इस समूह में अभी कोई ग्राहक नहीं।",
+    "lastOrder": "अंतिम खरीदारी",
+    "messageSend": "संदेश भेजें",
+    "broadcastButton": "चुने हुए को भेजें"
   },
   "create": {
-    "title": "Post बनाएं",
-    "selectFestival": "Festival चुनें",
-    "selectSegment": "Target segment",
-    "productHint": "Product / offer (optional)",
-    "generate": "AI से Generate करें",
-    "generating": "Generate हो रहा है...",
-    "chooseVariant": "एक variant चुनें",
-    "approve": "Approve & Schedule",
-    "edit": "Caption edit करें"
+    "title": "पोस्ट बनाएं",
+    "subtitle": "AI मसौदा लिखेगा, फैसला आप करेंगे।",
+    "whichFestival": "कौन सा अवसर?",
+    "noFestival": "कोई खास अवसर नहीं",
+    "forWhom": "किन ग्राहकों के लिए?",
+    "allCustomers": "सभी ग्राहक",
+    "platform": "प्लेटफॉर्म",
+    "optional": "वैकल्पिक",
+    "productHint": "जैसे नई साड़ी कलेक्शन, नवरात्रि पर 20% छूट...",
+    "generate": "AI से पोस्ट लिखवाएं",
+    "aiWriting": "AI आपके पोस्ट लिख रहा है...",
+    "aiWritingDesc": "आपके वफादार ग्राहकों के लिए नवरात्रि के कैप्शन लिखे जा रहे हैं",
+    "chooseCaption": "एक चुनें — आप बदल भी सकते हैं:",
+    "selected": "चुना गया",
+    "approve": "स्वीकृत करें",
+    "edit": "बदलें",
+    "scheduleTitle": "कब भेजना है?",
+    "scheduleDesc": "आपके ग्राहकों के लिए सबसे अच्छा समय पहले से चुना गया है",
+    "bestTime": "सबसे अच्छा समय",
+    "scheduleButton": "इस समय निर्धारित करें",
+    "doneTitle": "हो गया!",
+    "doneDesc": "पोस्ट निर्धारित — अपने आप भेज दिया जाएगा",
+    "createAnother": "एक और पोस्ट बनाएं",
+    "viewCalendar": "कैलेंडर देखें",
+    "style1": "छोटा और प्रभावशाली",
+    "style2": "कहानी वाला",
+    "style3": "सीधा ऑफर"
   },
   "insights": {
-    "title": "इस हफ्ते का summary",
-    "postsSent": "Posts भेजे",
-    "contactsReached": "Contacts reached",
-    "responses": "Responses मिले",
-    "topPost": "सबसे अच्छा post"
+    "title": "इस हफ्ते",
+    "streak": "पोस्टिंग की लकीर",
+    "streakWeeks": "हफ्ते",
+    "streakDesc": "आपने लगातार पोस्ट किया",
+    "topPost": "सबसे ज्यादा पसंद किया गया पोस्ट",
+    "opportunity": "अगला मौका",
+    "planButton": "इस त्योहार के लिए पोस्ट तैयार करें",
+    "achievementLabel": "इस हफ्ते:"
   },
   "settings": {
-    "title": "Settings",
-    "profile": "Business Profile",
-    "language": "भाषा",
-    "brand": "Brand Colors",
-    "plan": "आपका Plan",
-    "save": "बदलाव सेव करें"
+    "title": "सेटिंग",
+    "profileTitle": "व्यवसाय की जानकारी",
+    "businessName": "दुकान का नाम",
+    "businessType": "व्यवसाय का प्रकार",
+    "city": "शहर",
+    "state": "राज्य",
+    "instagram": "Instagram हैंडल",
+    "languageTitle": "भाषा",
+    "languageNote": "पूरे ऐप की भाषा बदलता है",
+    "colorTitle": "ब्रांड रंग",
+    "planTitle": "आपकी योजना",
+    "currentPlan": "अभी चल रही है",
+    "upgradeButton": "स्टार्टर में अपग्रेड करें",
+    "planDesc": "मुफ्त योजना: 5 AI पोस्ट/माह · 30 दिन का कैलेंडर · बुनियादी ग्राहक सूची",
+    "privacyTitle": "गोपनीयता और डेटा",
+    "privacyDesc": "आपका डेटा भारत में सुरक्षित है (AWS मुंबई)। फोन नंबर एन्क्रिप्टेड हैं। WhatsApp चैट कभी सेव नहीं होते।",
+    "deleteData": "मेरा खाता और डेटा हटाएं",
+    "save": "बदलाव सहेजें",
+    "saved": "सहेज लिया!"
+  },
+  "calendar": {
+    "title": "त्योहार कैलेंडर",
+    "subtitle": "इंदौर",
+    "createPost": "नया पोस्ट",
+    "upcoming": "आपकी दुकान के लिए आने वाले त्योहार",
+    "create": "पोस्ट तैयार करें"
   }
 }
