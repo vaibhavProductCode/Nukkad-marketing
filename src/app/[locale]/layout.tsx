@@ -14,9 +14,12 @@ export const metadata: Metadata = {
   description:
     "AI-powered marketing co-pilot for India's neighborhood businesses. Festival calendar, WhatsApp CRM, and AI content — in Hindi.",
   icons: {
-    icon: [{ url: "/icon", type: "image/png" }],
-    shortcut: "/icon",
-    apple: "/icon",
+    icon: [
+      { url: "/icon", type: "image/png", sizes: "64x64" },
+      { url: "/icon", type: "image/png", sizes: "32x32" },
+    ],
+    shortcut: [{ url: "/icon", type: "image/png" }],
+    apple: [{ url: "/icon", type: "image/png", sizes: "64x64" }],
   },
 };
 
