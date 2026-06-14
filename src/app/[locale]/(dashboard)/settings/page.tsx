@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { useParams, useRouter } from "next/navigation";
 import { SUPPORTED_LOCALES, BUSINESS_TYPES } from "@/lib/constants";
+import { clearSession } from "@/lib/auth";
 
 const COLORS = ["#FF6B35", "#E91E63", "#9C27B0", "#2196F3", "#00BCD4", "#16a34a", "#FF9800", "#795548"];
 
@@ -33,13 +34,7 @@ export default function SettingsPage() {
   }
 
   function handleLogout() {
-    try {
-      localStorage.clear();
-      sessionStorage.clear();
-      document.cookie.split(";").forEach((c) => {
-        document.cookie = c.trim().split("=")[0] + "=;expires=" + new Date(0).toUTCString() + ";path=/";
-      });
-    } catch (_) {}
+    clearSession();
     window.location.href = `/${currentLocale}`;
   }
 
@@ -139,7 +134,7 @@ export default function SettingsPage() {
         {/* Privacy */}
         <div className="bg-slate-50 rounded-2xl border border-slate-100 p-5">
           <h2 className="text-sm font-bold text-slate-600 mb-1">{t("privacyTitle")}</h2>
-          <p className="text-xs text-slate-400 mb-3">🔒 {t("privacyDesc")}</p>
+          <p className="text-xs text-slate-400 mb-3">{t("privacyDesc")}</p>
           <button className="text-xs text-red-500 font-semibold hover:underline">
             {t("deleteData")}
           </button>
@@ -147,15 +142,14 @@ export default function SettingsPage() {
 
         <button onClick={save}
           className={`w-full py-4 rounded-2xl font-black text-sm transition-all ${saved ? "bg-[#16a34a] text-white" : "bg-[#FF6B35] text-white hover:bg-[#e85520]"}`}>
-          {saved ? `✓ ${t("saved")}` : t("save")}
+          {saved ? `${t("saved")}` : t("save")}
         </button>
 
-        {/* Logout — clears all browser data */}
         <button
           onClick={handleLogout}
-          className="w-full py-3.5 rounded-2xl text-sm font-semibold text-slate-500 border border-slate-200 hover:bg-slate-50 hover:text-slate-700 transition-all flex items-center justify-center gap-2"
+          className="w-full py-3.5 rounded-2xl text-sm font-semibold text-slate-500 border border-slate-200 hover:bg-slate-50 hover:text-slate-700 transition-all"
         >
-          🚪 Log out
+          Log out
         </button>
       </div>
     </div>

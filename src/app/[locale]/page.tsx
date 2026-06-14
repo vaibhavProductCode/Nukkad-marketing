@@ -3,60 +3,35 @@ import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
-function StatCard({ value, label }: { value: string; label: string }) {
-  return (
-    <div className="text-center p-5 bg-white/10 rounded-2xl backdrop-blur-sm">
-      <p className="text-3xl font-black text-white">{value}</p>
-      <p className="text-sm text-orange-100 mt-1">{label}</p>
-    </div>
-  );
-}
-
-function FeatureCard({ icon, title, desc }: { icon: string; title: string; desc: string }) {
+function FeatureCard({ title, desc }: { title: string; desc: string }) {
   return (
     <div className="bg-white border border-orange-100 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all">
-      <div className="w-12 h-12 bg-[#fff1eb] rounded-xl flex items-center justify-center text-2xl mb-4">{icon}</div>
       <h3 className="text-base font-bold text-slate-800 mb-2">{title}</h3>
       <p className="text-sm text-slate-500 leading-relaxed">{desc}</p>
     </div>
   );
 }
 
-function PricingCard({
-  name, price, period, features, highlighted, ctaLocale,
-}: {
-  name: string; price: string; period: string; features: string[]; highlighted?: boolean; ctaLocale: string;
-}) {
-  return (
-    <div className={`rounded-2xl p-6 border flex flex-col gap-4 ${highlighted ? "bg-[#FF6B35] text-white border-transparent shadow-xl scale-105" : "bg-white border-slate-200 shadow-sm"}`}>
-      <div>
-        <p className={`text-xs font-bold uppercase tracking-widest mb-1 ${highlighted ? "text-orange-100" : "text-[#FF6B35]"}`}>{name}</p>
-        <div className="flex items-end gap-1">
-          <span className={`text-4xl font-black ${highlighted ? "text-white" : "text-slate-800"}`}>{price}</span>
-          <span className={`text-sm mb-1 ${highlighted ? "text-orange-100" : "text-slate-500"}`}>{period}</span>
-        </div>
-      </div>
-      <ul className="space-y-2 flex-1">
-        {features.map((f) => (
-          <li key={f} className={`text-sm flex items-start gap-2 ${highlighted ? "text-white" : "text-slate-600"}`}>
-            <span className={highlighted ? "text-orange-200" : "text-[#FF6B35]"}>✓</span>
-            {f}
-          </li>
-        ))}
-      </ul>
-      <Link
-        href={`/${ctaLocale}/dashboard`}
-        className={`text-center text-sm font-bold py-3 rounded-xl transition-all ${
-          highlighted
-            ? "bg-white text-[#FF6B35] hover:bg-orange-50"
-            : "bg-[#FF6B35] text-white hover:bg-[#e85520]"
-        }`}
-      >
-        Try the Dashboard →
-      </Link>
-    </div>
-  );
-}
+const TEAM = [
+  {
+    name: "Vaibhav Shukla",
+    role: "Product & Strategy",
+    bio: "Former growth lead at a D2C brand. Spent 3 years helping small traders in Indore figure out Facebook ads.",
+    initials: "VS",
+  },
+  {
+    name: "Priya Mehta",
+    role: "Design",
+    bio: "Designed for 2 fintech apps. Grew up watching her mother run a sari shop in Nagpur — this product is personal.",
+    initials: "PM",
+  },
+  {
+    name: "Arjun Nair",
+    role: "Engineering",
+    bio: "Built backend systems at a logistics startup. Fluent in Malayalam, Tamil, and Python.",
+    initials: "AN",
+  },
+];
 
 export default function LandingPage({ params }: { params: Promise<{ locale: string }> }) {
   const t = useTranslations();
@@ -80,7 +55,7 @@ export default function LandingPage({ params }: { params: Promise<{ locale: stri
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link
-              href="/en/dashboard"
+              href="/en/login"
               className="w-full sm:w-auto px-8 py-3.5 bg-[#FF6B35] text-white font-bold rounded-xl hover:bg-[#e85520] transition-all shadow-lg text-base"
             >
               {t("hero.cta")}
@@ -89,55 +64,89 @@ export default function LandingPage({ params }: { params: Promise<{ locale: stri
               href="#features"
               className="w-full sm:w-auto px-8 py-3.5 bg-white/10 text-white font-semibold rounded-xl hover:bg-white/20 transition-all text-base"
             >
-              {t("hero.ctaSecondary")} →
+              {t("hero.ctaSecondary")}
             </Link>
           </div>
 
-          {/* Stats bar — honest Phase 1 numbers */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-14">
-            <StatCard value="63M+" label={t("stats.smbs")} />
-            <StatCard value="500M+" label={t("stats.whatsapp")} />
-            <StatCard value="74%" label={t("stats.noMarketing")} />
-            <StatCard value="60+" label={t("stats.festivals")} />
+            {[
+              { value: "63M+", label: t("stats.smbs") },
+              { value: "500M+", label: t("stats.whatsapp") },
+              { value: "74%", label: t("stats.noMarketing") },
+              { value: "60+", label: t("stats.festivals") },
+            ].map((s) => (
+              <div key={s.label} className="text-center p-5 bg-white/10 rounded-2xl">
+                <p className="text-3xl font-black text-white">{s.value}</p>
+                <p className="text-sm text-orange-100 mt-1">{s.label}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Ticker strip */}
-      <div className="bg-[#1e293b] py-3 overflow-hidden">
-        <div className="flex gap-6 text-sm text-slate-400 text-center justify-center flex-wrap px-4">
-          <span>🎉 Navratri posts ready</span>
-          <span className="hidden sm:inline">·</span>
-          <span>💬 45 loyal customers reached</span>
-          <span className="hidden sm:inline">·</span>
-          <span>📅 Diwali in 36 days — 5 posts suggested</span>
-          <span className="hidden sm:inline">·</span>
-          <span>🔥 4-week posting streak!</span>
+      {/* Problem section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-widest text-[#FF6B35] mb-3">The Problem</p>
+              <h2 className="text-3xl font-black text-slate-800 leading-snug mb-4">
+                India has 63 million small shops. None of them have a marketing team.
+              </h2>
+              <p className="text-slate-500 leading-relaxed">
+                A boutique owner in Indore knows Navratri is coming. She knows she should post something. But between managing inventory, attending customers, and closing the shop — she does not have time to think about captions, schedules, or which customers to target.
+              </p>
+              <p className="text-slate-500 leading-relaxed mt-3">
+                She misses the festival. Her competitor, two streets over, posts a WhatsApp offer at 6 PM and sells out by morning.
+              </p>
+            </div>
+            <div className="bg-[#fff9f2] rounded-2xl p-6 border border-orange-100">
+              <p className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">What she needs is simple</p>
+              <div className="space-y-4">
+                {[
+                  { step: "1", text: "Know which festival is coming up — and what to say about it" },
+                  { step: "2", text: "Know which customers to send the message to" },
+                  { step: "3", text: "Have the message written for her, in her language" },
+                ].map((item) => (
+                  <div key={item.step} className="flex gap-4 items-start">
+                    <div className="w-7 h-7 rounded-full bg-[#FF6B35] text-white text-xs font-black flex items-center justify-center flex-shrink-0 mt-0.5">
+                      {item.step}
+                    </div>
+                    <p className="text-sm text-slate-600 leading-relaxed">{item.text}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-5 pt-5 border-t border-orange-100">
+                <p className="text-sm font-bold text-slate-800">That is Nukkad.</p>
+                <p className="text-xs text-slate-500 mt-1">Festival-aware, customer-aware, language-aware — done in 3 taps.</p>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
 
       {/* Features */}
-      <section id="features" className="py-20">
+      <section id="features" className="py-20 bg-[#fff9f2]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-black text-slate-800 mb-3">{t("features.title")}</h2>
             <p className="text-slate-500 max-w-lg mx-auto">{t("features.subtitle")}</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <FeatureCard icon="🎉" title={t("features.festival.title")} desc={t("features.festival.desc")} />
-            <FeatureCard icon="✨" title={t("features.ai.title")} desc={t("features.ai.desc")} />
-            <FeatureCard icon="💬" title={t("features.crm.title")} desc={t("features.crm.desc")} />
-            <FeatureCard icon="💡" title={t("features.advisor.title")} desc={t("features.advisor.desc")} />
+            <FeatureCard title={t("features.festival.title")} desc={t("features.festival.desc")} />
+            <FeatureCard title={t("features.ai.title")} desc={t("features.ai.desc")} />
+            <FeatureCard title={t("features.crm.title")} desc={t("features.crm.desc")} />
+            <FeatureCard title={t("features.advisor.title")} desc={t("features.advisor.desc")} />
           </div>
         </div>
       </section>
 
       {/* Dashboard preview */}
-      <section className="bg-[#fff1eb]/40 py-16">
+      <section className="bg-white py-16">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 text-center">
-          <h2 className="text-2xl font-black text-slate-800 mb-2">See it in action</h2>
+          <h2 className="text-2xl font-black text-slate-800 mb-2">See what it looks like</h2>
           <p className="text-slate-500 mb-8 text-sm">Everything your shop needs, in one screen.</p>
-          <div className="bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden">
+          <div className="bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden text-left">
             <div className="bg-[#1e293b] px-4 py-3 flex items-center gap-2">
               <div className="w-3 h-3 rounded-full bg-red-400" />
               <div className="w-3 h-3 rounded-full bg-yellow-400" />
@@ -145,79 +154,127 @@ export default function LandingPage({ params }: { params: Promise<{ locale: stri
               <span className="text-slate-400 text-xs ml-3">nukkad.app/dashboard</span>
             </div>
             <div className="p-4 sm:p-6 bg-gradient-to-br from-[#fff1eb] to-white grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div className="bg-[#FF6B35] text-white rounded-xl p-4 text-left">
-                <p className="text-xs font-bold uppercase tracking-widest text-orange-200">त्योहार Alert</p>
-                <p className="text-xl font-black mt-1">🎉 Navratri in 8 days</p>
-                <p className="text-sm text-orange-100 mt-1">3 posts ready for your boutique in Indore</p>
-                <button className="mt-3 bg-white text-[#FF6B35] text-xs font-bold px-4 py-1.5 rounded-lg">Approve Karein →</button>
+              <div className="bg-[#FF6B35] text-white rounded-xl p-4">
+                <p className="text-xs font-bold uppercase tracking-widest text-orange-200">Festival Alert</p>
+                <p className="text-xl font-black mt-1">Navratri in 8 days</p>
+                <p className="text-sm text-orange-100 mt-1">3 posts ready for Indore boutiques</p>
+                <button className="mt-3 bg-white text-[#FF6B35] text-xs font-bold px-4 py-1.5 rounded-lg">Approve post</button>
               </div>
-              <div className="bg-white border border-slate-100 rounded-xl p-4 text-left shadow-sm">
-                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Broadcast Nudge</p>
-                <p className="text-sm font-semibold text-slate-700 mt-1">45 loyal customers ko 3 hafte se message nahi gaya.</p>
-                <div className="bg-[#dcf8c6] rounded-xl px-3 py-2 mt-2 text-xs text-slate-700">Navratri sale aa rahi hai! 🎉 Dekhne aao...</div>
-                <button className="mt-2 bg-[#16a34a] text-white text-xs font-bold px-4 py-1.5 rounded-lg">Message Bhejein →</button>
+              <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
+                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Broadcast</p>
+                <p className="text-sm font-semibold text-slate-700 mt-1">45 loyal customers not contacted in 3 weeks.</p>
+                <div className="bg-[#dcf8c6] rounded-xl px-3 py-2 mt-2 text-xs text-slate-700">Navratri sale shuru hai! Dekhne aao...</div>
+                <button className="mt-2 bg-[#16a34a] text-white text-xs font-bold px-4 py-1.5 rounded-lg">Send message</button>
               </div>
-              <div className="bg-white border border-slate-100 rounded-xl p-4 text-left shadow-sm">
-                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Is hafte</p>
+              <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
+                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">This week</p>
                 <div className="mt-2 space-y-1.5">
-                  <p className="text-sm text-slate-600">📸 <strong>3</strong> posts bheje</p>
-                  <p className="text-sm text-slate-600">👥 <strong>89</strong> customers tak pahunche</p>
-                  <p className="text-sm text-slate-600">💬 <strong>12</strong> replies aaye</p>
-                  <p className="text-sm text-[#FF6B35] font-semibold">🔥 4 hafte ki streak!</p>
+                  <p className="text-sm text-slate-600"><strong>3</strong> posts sent</p>
+                  <p className="text-sm text-slate-600"><strong>89</strong> customers reached</p>
+                  <p className="text-sm text-slate-600"><strong>12</strong> replies received</p>
+                  <p className="text-sm text-[#FF6B35] font-semibold">4-week posting streak</p>
                 </div>
               </div>
             </div>
           </div>
-          <Link href="/en/dashboard" className="inline-block mt-6 text-sm font-bold text-[#FF6B35] hover:underline">
-            Live dashboard try karein →
+          <Link href="/en/login" className="inline-block mt-6 text-sm font-bold text-[#FF6B35] hover:underline">
+            Try the live dashboard
           </Link>
         </div>
       </section>
 
-      {/* Pricing — corrected prices, Pre-spend Advisor removed from Starter */}
-      <section id="pricing" className="py-20">
+      {/* Pricing — Coming Soon */}
+      <section id="pricing" className="py-20 bg-[#fff9f2]">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-black text-slate-800 mb-3">{t("pricing.title")}</h2>
             <p className="text-slate-500">{t("pricing.subtitle")}</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 items-center">
-            <PricingCard
-              name="Free"
-              price="₹0"
-              period="/month"
-              features={["5 AI posts/month", "Festival planner (30 days)", "Basic contacts list"]}
-              ctaLocale="en"
-            />
-            <PricingCard
-              name="Starter"
-              price="₹399"
-              period="/month"
-              features={["30 AI posts/month", "Full festival calendar", "WhatsApp CRM (500 contacts)", "Broadcast messages"]}
-              highlighted
-              ctaLocale="en"
-            />
-            <PricingCard
-              name="Growth"
-              price="₹899"
-              period="/month"
-              features={["Unlimited posts", "WhatsApp API", "CRM (5,000 contacts)", "Ad ROI tracking", "Pre-spend Advisor"]}
-              ctaLocale="en"
-            />
+            {[
+              {
+                name: "Free",
+                features: ["5 AI posts/month", "Festival planner (30 days)", "Basic contacts list"],
+              },
+              {
+                name: "Starter",
+                features: ["30 AI posts/month", "Full festival calendar", "WhatsApp CRM (500 contacts)", "Broadcast messages"],
+                highlighted: true,
+              },
+              {
+                name: "Growth",
+                features: ["Unlimited posts", "WhatsApp API", "CRM (5,000 contacts)", "Ad ROI tracking", "Pre-spend Advisor"],
+              },
+            ].map((plan) => (
+              <div
+                key={plan.name}
+                className={`rounded-2xl p-6 border flex flex-col gap-4 relative overflow-hidden ${plan.highlighted ? "bg-[#1e293b] text-white border-transparent shadow-xl scale-105" : "bg-white border-slate-200 shadow-sm"}`}
+              >
+                <div>
+                  <p className={`text-xs font-bold uppercase tracking-widest mb-2 ${plan.highlighted ? "text-orange-300" : "text-[#FF6B35]"}`}>{plan.name}</p>
+                  <div className={`inline-block px-3 py-1.5 rounded-lg text-sm font-bold ${plan.highlighted ? "bg-[#FF6B35] text-white" : "bg-slate-100 text-slate-600"}`}>
+                    Coming Soon
+                  </div>
+                </div>
+                <ul className="space-y-2 flex-1">
+                  {plan.features.map((f) => (
+                    <li key={f} className={`text-sm flex items-start gap-2 ${plan.highlighted ? "text-slate-300" : "text-slate-600"}`}>
+                      <span className={plan.highlighted ? "text-orange-400" : "text-[#FF6B35]"}>—</span>
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  href="/en/login"
+                  className={`text-center text-sm font-bold py-3 rounded-xl transition-all ${
+                    plan.highlighted
+                      ? "bg-[#FF6B35] text-white hover:bg-[#e85520]"
+                      : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+                  }`}
+                >
+                  Join waitlist
+                </Link>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* CTA — honest scarcity copy */}
+      {/* Who we are / Team */}
+      <section className="py-20 bg-white">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-12">
+            <p className="text-xs font-bold uppercase tracking-widest text-[#FF6B35] mb-3">Who We Are</p>
+            <h2 className="text-3xl font-black text-slate-800 mb-3">Built by people who grew up around these shops</h2>
+            <p className="text-slate-500 max-w-xl mx-auto">
+              We are not a Silicon Valley team building for India from afar. We grew up going to these nukkad shops. We watched the owners struggle with Instagram. We are fixing that.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            {TEAM.map((member) => (
+              <div key={member.name} className="text-center">
+                <div className="w-16 h-16 rounded-2xl bg-[#1e293b] flex items-center justify-center text-white text-lg font-black mx-auto mb-4">
+                  {member.initials}
+                </div>
+                <p className="font-bold text-slate-800">{member.name}</p>
+                <p className="text-xs text-[#FF6B35] font-semibold mt-0.5 mb-2">{member.role}</p>
+                <p className="text-sm text-slate-500 leading-relaxed">{member.bio}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA */}
       <section className="bg-[#FF6B35] py-16">
         <div className="max-w-2xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-black text-white mb-3">Aapka business grow karna chahte hain?</h2>
-          <p className="text-orange-100 mb-8">Be among the first 100 shopkeepers on Nukkad.</p>
+          <h2 className="text-3xl font-black text-white mb-3">Ready to try it?</h2>
+          <p className="text-orange-100 mb-8">Be among the first 100 shopkeepers on Nukkad. Free to start.</p>
           <Link
-            href="/en/dashboard"
+            href="/en/login"
             className="inline-block bg-white text-[#FF6B35] font-black px-10 py-4 rounded-xl hover:bg-orange-50 transition-all shadow-lg text-base"
           >
-            Free mein shuru karein →
+            Start for free
           </Link>
         </div>
       </section>

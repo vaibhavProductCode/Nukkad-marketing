@@ -3,11 +3,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const NAV_ITEMS = [
-  { href: "dashboard", label: "आज", icon: "🏠" },
-  { href: "calendar", label: "Calendar", icon: "📅" },
-  { href: "create", label: "", icon: "➕", isCreate: true },
-  { href: "crm", label: "Customers", icon: "👥" },
-  { href: "insights", label: "Hafta", icon: "📊" },
+  { href: "dashboard", label: "Today" },
+  { href: "calendar", label: "Calendar" },
+  { href: "create", label: "Create", isCreate: true },
+  { href: "crm", label: "Customers" },
+  { href: "insights", label: "Week" },
 ];
 
 export default function BottomNav({ locale }: { locale: string }) {
@@ -26,15 +26,14 @@ export default function BottomNav({ locale }: { locale: string }) {
                 <div className="w-14 h-14 bg-[#FF6B35] rounded-full flex items-center justify-center shadow-lg shadow-orange-200 text-white text-2xl font-bold border-4 border-[#fff9f2]">
                   +
                 </div>
-                <span className="text-[10px] text-slate-400 mt-1">Banao</span>
+                <span className="text-[10px] text-slate-400 mt-1">{item.label}</span>
               </Link>
             );
           }
 
           return (
-            <Link key={item.href} href={href} className="flex flex-col items-center gap-0.5 min-w-[48px] py-1">
-              <span className="text-xl">{item.icon}</span>
-              <span className={`text-[10px] font-semibold ${isActive ? "text-[#FF6B35]" : "text-slate-400"}`}>
+            <Link key={item.href} href={href} className="flex flex-col items-center gap-0.5 min-w-[52px] py-1">
+              <span className={`text-[11px] font-semibold ${isActive ? "text-[#FF6B35]" : "text-slate-400"}`}>
                 {item.label}
               </span>
               {isActive && <div className="w-1 h-1 rounded-full bg-[#FF6B35]" />}

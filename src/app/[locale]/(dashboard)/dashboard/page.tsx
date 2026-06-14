@@ -7,16 +7,9 @@ import Link from "next/link";
 export default function DashboardPage() {
   const t = useTranslations("home");
   const [postState, setPostState] = useState<"pending" | "approved" | "skipped">("pending");
-  const [showCelebration, setShowCelebration] = useState(false);
 
   const nextFestival = MOCK_FESTIVALS[0];
   const suggestedPost = MOCK_POSTS[0];
-
-  function handleApprove() {
-    setShowCelebration(true);
-    setPostState("approved");
-    setTimeout(() => setShowCelebration(false), 2000);
-  }
 
   return (
     <div className="p-4 max-w-2xl mx-auto">
@@ -24,10 +17,9 @@ export default function DashboardPage() {
       <div className="mb-5 flex items-center justify-between">
         <div>
           <p className="text-sm text-slate-500">{t("greeting")},</p>
-          <h1 className="text-xl font-black text-slate-800">Priya Boutique 👋</h1>
+          <h1 className="text-xl font-black text-slate-800">Priya Boutique</h1>
         </div>
         <div className="flex items-center gap-1.5 bg-[#fff1eb] px-3 py-2 rounded-xl border border-orange-100">
-          <span className="text-base">🔥</span>
           <div>
             <p className="text-xs font-black text-[#FF6B35] leading-none">4 {t("streakLabel")}</p>
             <p className="text-[10px] text-orange-400 mt-0.5">{t("streakMotivation")}</p>
@@ -35,7 +27,7 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      {/* Festival countdown strip */}
+      {/* Festival countdown */}
       <div
         className="rounded-2xl p-4 mb-4 text-white flex items-center justify-between gap-3"
         style={{ background: `linear-gradient(135deg, ${nextFestival.palette[0]}, ${nextFestival.palette[1] || "#c0392b"})` }}
@@ -53,7 +45,7 @@ export default function DashboardPage() {
           href="./calendar"
           className="bg-white/20 border border-white/40 text-white font-bold text-xs px-4 py-2 rounded-xl whitespace-nowrap hover:bg-white/30 transition-all"
         >
-          {t("viewCalendar")} →
+          {t("viewCalendar")}
         </Link>
       </div>
 
@@ -64,11 +56,9 @@ export default function DashboardPage() {
             <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">{t("suggestedPost")}</p>
           </div>
           <div
-            className="mx-4 rounded-xl flex items-center justify-center text-white text-4xl font-black"
+            className="mx-4 rounded-xl"
             style={{ height: 180, backgroundColor: suggestedPost.imageColor }}
-          >
-            🎉
-          </div>
+          />
           <div className="p-4">
             <div className="flex items-center gap-2 mb-2">
               <span className="text-xs bg-orange-100 text-[#FF6B35] font-bold px-2 py-0.5 rounded-full">
@@ -78,21 +68,20 @@ export default function DashboardPage() {
                 {suggestedPost.platform}
               </span>
             </div>
-            <div className="bg-[#dcf8c6] rounded-2xl rounded-tl-sm px-4 py-3 mb-1 inline-block max-w-full">
+            <div className="bg-[#dcf8c6] rounded-2xl rounded-tl-sm px-4 py-3 mb-3 inline-block max-w-full">
               <p className="text-sm text-slate-800 leading-relaxed">{suggestedPost.caption}</p>
-              <p className="text-[10px] text-slate-400 text-right mt-1">6:00 PM ✓✓</p>
+              <p className="text-[10px] text-slate-400 text-right mt-1">6:00 PM</p>
             </div>
-            <p className="text-xs text-slate-400 italic mb-4">{suggestedPost.captionHi}</p>
 
             <div className="flex gap-2">
               <button
-                onClick={handleApprove}
-                className="flex-1 bg-[#16a34a] text-white font-black py-3 rounded-xl text-sm hover:bg-[#15803d] transition-all shadow-sm shadow-green-200"
+                onClick={() => setPostState("approved")}
+                className="flex-1 bg-[#16a34a] text-white font-black py-3 rounded-xl text-sm hover:bg-[#15803d] transition-all"
               >
-                ✓ {t("approve")}
+                {t("approve")}
               </button>
               <button className="bg-slate-100 text-slate-700 font-semibold py-3 px-4 rounded-xl text-sm hover:bg-slate-200 transition-all">
-                ✏️ {t("edit")}
+                {t("edit")}
               </button>
               <button
                 onClick={() => setPostState("skipped")}
@@ -107,21 +96,20 @@ export default function DashboardPage() {
 
       {postState === "approved" && (
         <div className="bg-white rounded-2xl border border-green-100 shadow-sm p-6 mb-4 text-center">
-          <div className={`text-4xl mb-2 ${showCelebration ? "animate-bounce" : ""}`}>🎉</div>
-          <p className="font-black text-slate-800">{t("postApproved")}</p>
-          <p className="text-sm text-slate-500 mt-1">{t("postScheduled")} 📲</p>
+          <p className="font-black text-slate-800 text-lg">{t("postApproved")}</p>
+          <p className="text-sm text-slate-500 mt-1">{t("postScheduled")}</p>
           <button
             onClick={() => setPostState("pending")}
             className="mt-3 text-xs text-[#FF6B35] font-semibold"
           >
-            {t("viewMore")} →
+            {t("viewMore")}
           </button>
         </div>
       )}
 
       {postState === "skipped" && (
         <div className="bg-slate-50 rounded-2xl border border-slate-100 p-5 mb-4 text-center">
-          <p className="text-sm text-slate-500">🙂</p>
+          <p className="text-sm text-slate-500">No problem — we will suggest another tomorrow.</p>
           <button onClick={() => setPostState("pending")} className="mt-2 text-xs text-[#FF6B35] font-semibold">
             {t("viewMore")}
           </button>
@@ -129,13 +117,8 @@ export default function DashboardPage() {
       )}
 
       {/* Broadcast nudge */}
-      <div className="bg-white rounded-2xl border border-green-100 shadow-sm p-4 mb-4">
-        <div className="flex items-start gap-3">
-          <span className="text-xl mt-0.5">💬</span>
-          <div className="flex-1">
-            <p className="text-sm font-bold text-slate-800">45 {t("broadcastNudge")}</p>
-          </div>
-        </div>
+      <div className="bg-white rounded-2xl border border-orange-100 shadow-sm p-4 mb-4">
+        <p className="text-sm font-bold text-slate-800 mb-1">45 {t("broadcastNudge")}</p>
         <div className="flex gap-2 mt-3">
           <Link
             href="./crm"
@@ -157,7 +140,7 @@ export default function DashboardPage() {
           { value: "12", labelKey: "statsReplies" as const },
         ].map((s) => (
           <div key={s.labelKey} className="bg-white rounded-2xl p-3 border border-slate-100 shadow-sm text-center">
-            <p className="text-2xl font-black text-slate-800">{s.value}</p>
+            <p className="text-2xl font-black text-[#FF6B35]">{s.value}</p>
             <p className="text-[10px] text-slate-500 mt-0.5 leading-tight">{t(s.labelKey)}</p>
           </div>
         ))}

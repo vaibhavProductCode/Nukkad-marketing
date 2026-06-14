@@ -2,6 +2,8 @@
 import { useState, useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
 import Link from "next/link";
+import Logo from "@/components/ui/Logo";
+import { setSession } from "@/lib/auth";
 
 type OtpStatus = "idle" | "loading" | "sent" | "error";
 type VerifyStatus = "idle" | "loading" | "error";
@@ -17,7 +19,6 @@ export default function LoginPage() {
   const params = useParams();
   const locale = (params?.locale as string) || "en";
 
-  // Indian mobile: exactly 10 digits, starts with 6-9
   const isValidPhone = /^[6-9]\d{9}$/.test(phone);
 
   useEffect(() => {
@@ -30,7 +31,6 @@ export default function LoginPage() {
     e.preventDefault();
     if (!isValidPhone) return;
     setOtpStatus("loading");
-    // Simulate API call — in prod: POST /auth/request-otp
     setTimeout(() => {
       setOtpStatus("sent");
       setStep("otp");
@@ -42,13 +42,11 @@ export default function LoginPage() {
     e.preventDefault();
     if (otp.length < 6) return;
     setVerifyStatus("loading");
-    // Simulate verify — any 6-digit OTP works in demo mode
     setTimeout(() => {
       if (otp === "000000") {
-        // Simulate error state for demo
         setVerifyStatus("error");
       } else {
-        setVerifyStatus("idle");
+        setSession();
         router.push(`/${locale}/dashboard`);
       }
     }, 1200);
@@ -69,18 +67,18 @@ export default function LoginPage() {
     <div className="min-h-screen bg-gradient-to-br from-[#1e293b] to-[#2d1b0e] flex items-center justify-center px-4">
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
-          <Link href={`/${locale}`}>
-            <span className="text-3xl font-black text-[#FF6B35]">NUKKAD</span>
+          <Link href={`/${locale}`} className="inline-flex justify-center">
+            <Logo size="md" variant="full" className="[&_span]:text-white" />
           </Link>
-          <p className="text-slate-300 text-sm mt-2">Marketing in 3 taps</p>
+          <p className="text-slate-400 text-sm mt-3">Marketing in 3 taps</p>
         </div>
 
         <div className="bg-white rounded-2xl p-7 shadow-2xl">
           {step === "phone" ? (
             <form onSubmit={handlePhoneSubmit} className="space-y-5">
               <div>
-                <h2 className="text-xl font-black text-slate-800">Namaste! 👋</h2>
-                <p className="text-sm text-slate-500 mt-1">Apna mobile number daalo</p>
+                <h2 className="text-xl font-black text-slate-800">Welcome back</h2>
+                <p className="text-sm text-slate-500 mt-1">Enter your mobile number to continue</p>
               </div>
               <div>
                 <label className="text-xs font-semibold text-slate-600 block mb-1.5">Mobile Number</label>
@@ -94,10 +92,11 @@ export default function LoginPage() {
                     value={phone}
                     onChange={(e) => setPhone(e.target.value.replace(/\D/g, ""))}
                     className="flex-1 px-4 py-3 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#FF6B35]/40 focus:border-[#FF6B35]"
+                    autoFocus
                   />
                 </div>
                 {phone.length > 0 && !isValidPhone && (
-                  <p className="text-xs text-red-500 mt-1.5">Valid Indian number daalo (10 digits, 6-9 se shuru)</p>
+                  <p className="text-xs text-red-500 mt-1.5">Enter a valid 10-digit Indian mobile number</p>
                 )}
               </div>
 
@@ -113,49 +112,48 @@ export default function LoginPage() {
                 {otpStatus === "loading" ? (
                   <>
                     <span className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" />
-                    OTP bhej rahe hain...
+                    Sending OTP...
                   </>
                 ) : (
-                  "OTP Bhejo WhatsApp pe"
+                  "Send OTP on WhatsApp"
                 )}
               </button>
 
               <p className="text-xs text-slate-400 text-center">
-                6-digit OTP aapke WhatsApp pe aayega
+                A 6-digit OTP will be sent to your WhatsApp
               </p>
             </form>
           ) : (
             <form onSubmit={handleOtpSubmit} className="space-y-5">
               <div>
-                <h2 className="text-xl font-black text-slate-800">OTP Enter Karo</h2>
+                <h2 className="text-xl font-black text-slate-800">Enter OTP</h2>
                 <p className="text-sm text-slate-500 mt-1">
                   +91 {phone}{" "}
                   <button type="button" onClick={() => { setStep("phone"); setOtp(""); setVerifyStatus("idle"); }}
                     className="text-[#FF6B35] underline text-xs">
-                    Badlo
+                    Change
                   </button>
                 </p>
               </div>
 
-              {/* OTP sent success banner */}
-              <div className="bg-green-50 border border-green-200 rounded-xl px-4 py-2.5 text-xs text-green-700 font-medium flex items-center gap-2">
-                <span>✓</span> OTP WhatsApp pe bhej diya gaya
+              <div className="bg-green-50 border border-green-200 rounded-xl px-4 py-2.5 text-xs text-green-700 font-medium">
+                OTP sent to your WhatsApp
               </div>
 
               <input
                 type="text"
                 inputMode="numeric"
                 maxLength={6}
-                placeholder="• • • • • •"
+                placeholder="- - - - - -"
                 value={otp}
                 onChange={(e) => { setOtp(e.target.value.replace(/\D/g, "")); setVerifyStatus("idle"); }}
                 className="w-full text-center text-2xl tracking-[0.5em] px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FF6B35]/40 focus:border-[#FF6B35]"
+                autoFocus
               />
 
-              {/* Error state */}
               {verifyStatus === "error" && (
                 <div className="bg-red-50 border border-red-200 rounded-xl px-4 py-2.5 text-xs text-red-600 font-medium">
-                  Kuch galat hua. Dobara try karein. 🙁
+                  Incorrect OTP. Please try again.
                 </div>
               )}
 
@@ -165,32 +163,31 @@ export default function LoginPage() {
                 className={`w-full text-white font-bold py-3.5 rounded-xl transition-all text-sm flex items-center justify-center gap-2 ${
                   otp.length < 6 || verifyStatus === "loading"
                     ? "bg-slate-300 cursor-not-allowed"
-                    : "bg-[#16a34a] hover:bg-[#15803d]"
+                    : "bg-[#FF6B35] hover:bg-[#e85520]"
                 }`}
               >
                 {verifyStatus === "loading" ? (
                   <>
                     <span className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" />
-                    Verify ho raha hai...
+                    Verifying...
                   </>
                 ) : (
-                  "Verify Karein & Aage Badhein ✓"
+                  "Verify & Continue"
                 )}
               </button>
 
-              {/* Resend timer */}
               <p className="text-xs text-slate-400 text-center">
                 {resendTimer > 0 ? (
-                  <span>OTP dubara bhejein ({resendTimer}s)</span>
+                  <span>Resend OTP in {resendTimer}s</span>
                 ) : (
                   <button type="button" onClick={handleResend} className="text-[#FF6B35] font-semibold underline">
-                    OTP dubara bhejein
+                    Resend OTP
                   </button>
                 )}
               </p>
 
               <p className="text-xs text-slate-400 text-center border-t border-slate-100 pt-3">
-                Demo: koi bhi 6-digit number kaam karega (000000 = error test)
+                Demo: any 6 digits work (try 000000 for error)
               </p>
             </form>
           )}

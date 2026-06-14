@@ -14,7 +14,6 @@ export default function CRMPage() {
   const [showImport, setShowImport] = useState(false);
 
   const filtered = activeTab === "all" ? MOCK_CONTACTS : MOCK_CONTACTS.filter((c) => c.segment === activeTab);
-
   const tabCount = (key: TabKey) =>
     key === "all" ? MOCK_CONTACTS.length : MOCK_CONTACTS.filter((c) => c.segment === key).length;
 
@@ -22,13 +21,13 @@ export default function CRMPage() {
     setSelectedIds((prev) => prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]);
   }
 
-  const tabs: { key: TabKey; icon: string; label: string }[] = [
-    { key: "all", icon: "👥", label: t("all") },
-    { key: "champion", icon: "⭐", label: t("champions") },
-    { key: "loyal", icon: "💚", label: t("loyal") },
-    { key: "at_risk", icon: "⚠️", label: t("atRisk") },
-    { key: "new", icon: "🆕", label: t("new") },
-    { key: "birthday", icon: "🎂", label: t("birthday") },
+  const tabs: { key: TabKey; label: string }[] = [
+    { key: "all", label: t("all") },
+    { key: "champion", label: t("champions") },
+    { key: "loyal", label: t("loyal") },
+    { key: "at_risk", label: t("atRisk") },
+    { key: "new", label: t("new") },
+    { key: "birthday", label: t("birthday") },
   ];
 
   return (
@@ -37,7 +36,7 @@ export default function CRMPage() {
         <div>
           <h1 className="text-xl font-black text-slate-800">{t("title")}</h1>
           <p className="text-sm text-slate-500 mt-0.5">
-            {MOCK_CONTACTS.length} · {MOCK_CONTACTS.filter((c) => c.optedInBroadcast).length} {t("subtitle")}
+            {MOCK_CONTACTS.length} contacts · {MOCK_CONTACTS.filter((c) => c.optedInBroadcast).length} {t("subtitle")}
           </p>
         </div>
         <button
@@ -50,11 +49,10 @@ export default function CRMPage() {
 
       {showImport && (
         <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-5 mb-4">
-          <div className="text-2xl mb-2">📲</div>
           <p className="font-bold text-slate-800 text-sm mb-1">{t("importTitle")}</p>
           <p className="text-xs text-slate-500 mb-3">{t("importDesc")}</p>
           <div className="bg-[#fff1eb] rounded-xl p-3 text-xs text-slate-600 mb-3">
-            🔒 {t("privacyNote")}
+            {t("privacyNote")}
           </div>
           <button className="w-full bg-[#25D366] text-white font-bold py-3 rounded-xl text-sm hover:bg-green-600 transition-all">
             {t("importButton")}
@@ -71,7 +69,6 @@ export default function CRMPage() {
           const color = SEGMENT_COLORS[tab.key as ContactSegment];
           return (
             <div key={tab.key} className="bg-white rounded-xl p-2.5 text-center border border-slate-100 shadow-sm">
-              <p className="text-base">{tab.icon}</p>
               <p className="text-lg font-black text-slate-800">{tabCount(tab.key)}</p>
               <p className="text-[9px] font-medium leading-tight" style={{ color: color?.text }}>{tab.label}</p>
             </div>
@@ -85,14 +82,14 @@ export default function CRMPage() {
           <button
             key={tab.key}
             onClick={() => setActiveTab(tab.key)}
-            className={`flex items-center gap-1 px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all ${
+            className={`px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all ${
               activeTab === tab.key
                 ? "bg-[#FF6B35] text-white shadow"
                 : "bg-white text-slate-600 border border-slate-200 hover:border-[#FF6B35]"
             }`}
           >
-            {tab.icon} {tab.label}
-            <span className={`px-1.5 py-0.5 rounded-full text-[10px] ${activeTab === tab.key ? "bg-white/20" : "bg-slate-100"}`}>
+            {tab.label}
+            <span className={`ml-1 px-1.5 py-0.5 rounded-full text-[10px] ${activeTab === tab.key ? "bg-white/20" : "bg-slate-100"}`}>
               {tabCount(tab.key)}
             </span>
           </button>
@@ -112,15 +109,17 @@ export default function CRMPage() {
             >
               <input type="checkbox" checked={selectedIds.includes(contact.id)} readOnly className="accent-[#FF6B35] w-4 h-4 flex-shrink-0" />
               <div className="w-10 h-10 rounded-full bg-[#fff1eb] flex items-center justify-center text-sm font-black text-[#FF6B35] flex-shrink-0">
-                {contact.name ? contact.name[0] : "?"}
+                {contact.name ? contact.name[0].toUpperCase() : "?"}
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-1.5 flex-wrap">
                   <p className="text-sm font-semibold text-slate-800">
-                    {contact.name || `+91 ••••${contact.phoneLast4}`}
+                    {contact.name || `+91 ****${contact.phoneLast4}`}
                   </p>
                   <SegmentBadge segment={contact.segment} />
-                  {contact.hasBirthday && <span className="text-xs">🎂</span>}
+                  {contact.hasBirthday && (
+                    <span className="text-xs bg-pink-50 text-pink-600 px-1.5 py-0.5 rounded-full font-medium">Birthday</span>
+                  )}
                 </div>
                 <p className="text-xs text-slate-400 mt-0.5 truncate">
                   {t("lastOrder")}: {contact.lastOrderAt} · {contact.purchaseCategories[0]}
@@ -141,7 +140,7 @@ export default function CRMPage() {
       <div className="fixed bottom-16 md:bottom-4 left-0 right-0 px-4 pointer-events-none">
         <div className="max-w-2xl mx-auto">
           <button className="pointer-events-auto w-full flex items-center justify-center gap-2 bg-[#16a34a] text-white font-black py-3.5 rounded-2xl shadow-lg text-sm hover:bg-[#15803d] transition-all">
-            📢 {t("broadcastButton")}
+            {t("broadcastButton")}
             {selectedIds.length > 0 && (
               <span className="bg-white/20 text-xs px-2 py-0.5 rounded-full">{selectedIds.length}</span>
             )}

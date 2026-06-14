@@ -3,26 +3,17 @@ import Link from "next/link";
 import { usePathname, useParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { SUPPORTED_LOCALES } from "@/lib/constants";
+import { clearSession } from "@/lib/auth";
 import Logo from "@/components/ui/Logo";
 
 const NAV = [
-  { key: "today" as const, href: "/dashboard", icon: "🏠" },
-  { key: "calendar" as const, href: "/calendar", icon: "📅" },
-  { key: "crm" as const, href: "/crm", icon: "💬" },
-  { key: "create" as const, href: "/create", icon: "✨" },
-  { key: "insights" as const, href: "/insights", icon: "📊" },
-  { key: "settings" as const, href: "/settings", icon: "⚙️" },
+  { key: "today" as const, href: "/dashboard", label: "Today" },
+  { key: "calendar" as const, href: "/calendar", label: "Calendar" },
+  { key: "crm" as const, href: "/crm", label: "Customers" },
+  { key: "create" as const, href: "/create", label: "Create" },
+  { key: "insights" as const, href: "/insights", label: "This Week" },
+  { key: "settings" as const, href: "/settings", label: "Settings" },
 ];
-
-function clearAllBrowserData() {
-  try {
-    localStorage.clear();
-    sessionStorage.clear();
-    document.cookie.split(";").forEach((c) => {
-      document.cookie = c.trim().split("=")[0] + "=;expires=" + new Date(0).toUTCString() + ";path=/";
-    });
-  } catch (_) {}
-}
 
 export default function Sidebar() {
   const t = useTranslations("sidebar");
@@ -31,7 +22,7 @@ export default function Sidebar() {
   const locale = (params?.locale as string) || "en";
 
   function handleLogout() {
-    clearAllBrowserData();
+    clearSession();
     window.location.href = `/${locale}`;
   }
 
@@ -43,21 +34,20 @@ export default function Sidebar() {
         </Link>
       </div>
 
-      <nav className="flex-1 px-3 py-4 space-y-1">
-        {NAV.map(({ key, href, icon }) => {
+      <nav className="flex-1 px-3 py-4 space-y-0.5">
+        {NAV.map(({ key, href }) => {
           const fullHref = `/${locale}${href}`;
           const active = pathname === fullHref || pathname.startsWith(fullHref + "/");
           return (
             <Link
               key={key}
               href={fullHref}
-              className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${
+              className={`flex items-center px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${
                 active
                   ? "bg-[#FF6B35] text-white shadow-sm"
                   : "text-slate-300 hover:bg-slate-700 hover:text-white"
               }`}
             >
-              <span className="text-base">{icon}</span>
               {t(key)}
             </Link>
           );
@@ -82,9 +72,8 @@ export default function Sidebar() {
 
         <button
           onClick={handleLogout}
-          className="w-full flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm font-medium text-slate-400 hover:bg-slate-700 hover:text-white transition-all"
+          className="w-full px-3 py-2.5 rounded-xl text-sm font-medium text-slate-400 hover:bg-slate-700 hover:text-white transition-all text-left"
         >
-          <span>🚪</span>
           Log out
         </button>
       </div>
