@@ -13,14 +13,6 @@ export const metadata: Metadata = {
   title: "NUKKAD — AI assisted Marketing",
   description:
     "AI-powered marketing co-pilot for India's neighborhood businesses. Festival calendar, WhatsApp CRM, and AI content — in Hindi.",
-  icons: {
-    icon: [
-      { url: "/icon", type: "image/png", sizes: "64x64" },
-      { url: "/icon", type: "image/png", sizes: "32x32" },
-    ],
-    shortcut: [{ url: "/icon", type: "image/png" }],
-    apple: [{ url: "/icon", type: "image/png", sizes: "64x64" }],
-  },
 };
 
 export default async function LocaleLayout({
