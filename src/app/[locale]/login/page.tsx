@@ -70,7 +70,7 @@ export default function LoginPage() {
           <Link href={`/${locale}`} className="inline-flex justify-center">
             <Logo size="md" variant="full" className="[&_span]:text-white" />
           </Link>
-          <p className="text-slate-400 text-sm mt-3">Marketing in 3 taps</p>
+          <p className="text-slate-400 text-sm mt-3">AI assisted Marketing</p>
         </div>
 
         <div className="bg-white rounded-2xl p-7 shadow-2xl">

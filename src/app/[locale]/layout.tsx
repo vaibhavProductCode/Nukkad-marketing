@@ -10,7 +10,7 @@ const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "NUKKAD — Marketing in 3 taps",
+  title: "NUKKAD — AI assisted Marketing",
   description:
     "AI-powered marketing co-pilot for India's neighborhood businesses. Festival calendar, WhatsApp CRM, and AI content — in Hindi.",
 };
